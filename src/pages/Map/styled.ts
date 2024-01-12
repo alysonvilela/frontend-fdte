@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import img from "assets/images/pageBackground.png";
+import img from "../../assets/images/pageBackground.png";
 
 export const MapWrapper = styled.div`
   position: relative;

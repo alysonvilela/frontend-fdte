@@ -1,12 +1,9 @@
-import React from "react";
-
-import Button from "components/Button";
-
 import iconPlus from "assets/images/plus.png";
 
 import * as S from "./styled";
+import { Button } from "../Button";
 
-const Sidebar = () => (
+export const Sidebar = () => (
   <S.SideBarWrapper>
     <S.SideBarList>
       <S.SideBarItem>?</S.SideBarItem>
@@ -16,4 +13,3 @@ const Sidebar = () => (
   </S.SideBarWrapper>
 );
 
-export default Sidebar;

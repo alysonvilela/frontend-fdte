@@ -1,10 +1,15 @@
-import React from "react";
-
 import chevron from "assets/images/chevronDownBlack.png";
 
 import * as S from "./styled";
+import { ComponentPropsWithoutRef } from "react";
 
-const InputNumber = ({ className, label, placeholder, name, suffix }) => (
+interface InputNumberProps extends ComponentPropsWithoutRef<"input"> {
+  className?: string
+  label?: string
+  suffix?: string
+}
+
+export const InputNumber = ({ className, label, placeholder, name, suffix }: InputNumberProps) => (
   <S.InputNumberWrapper className={className}>
     {label && <S.Label>{label}</S.Label>}
 
@@ -20,5 +25,3 @@ const InputNumber = ({ className, label, placeholder, name, suffix }) => (
     </S.InputContent>
   </S.InputNumberWrapper>
 );
-
-export default InputNumber;

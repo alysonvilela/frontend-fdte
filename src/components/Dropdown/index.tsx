@@ -1,10 +1,17 @@
-import React from "react";
-
 import chevron from "assets/images/chevronDownBlack.png";
 
 import * as S from "./styled";
 
-const DropdownPage = ({ label, options }) => (
+
+interface DropdownProps {
+label: string
+options: {
+  value?: string | number | readonly string[]
+  text: string
+}[]
+}
+
+export const Dropdown = ({ label, options }: DropdownProps) => (
   <S.DropdownWrapper>
     {label && <S.Label>{label}</S.Label>}
 
@@ -22,5 +29,3 @@ const DropdownPage = ({ label, options }) => (
     </S.DropdownContent>
   </S.DropdownWrapper>
 );
-
-export default DropdownPage;

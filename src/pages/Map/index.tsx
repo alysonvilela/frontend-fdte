@@ -1,7 +1,5 @@
-import React from "react";
 
-import Sidebar from "components/Sidebar";
-
+import { Sidebar } from "@phosphor-icons/react";
 import * as S from "./styled";
 
 const MapPage = () => (
