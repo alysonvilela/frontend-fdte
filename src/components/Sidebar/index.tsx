@@ -1,4 +1,4 @@
-import iconPlus from "assets/images/plus.png";
+import iconPlus from "../../assets/images/plus.png";
 
 import * as S from "./styled";
 import { Button } from "../Button";

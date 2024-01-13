@@ -1,11 +1,19 @@
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, createBrowserRouter, RouterProvider, createRoutesFromElements } from "react-router-dom";
 
 import MapPage from "./pages/Map";
+import HomePage from "./pages/Home";
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<HomePage />}>
+      <Route path="map" element={<MapPage />} />
+    </Route>
+  )
+);
 
 export const Routes = () => {
   return (
-    <BrowserRouter>
-        <Route Component={MapPage} path="/map" />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   );
 };
