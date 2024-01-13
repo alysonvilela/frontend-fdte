@@ -6,9 +6,10 @@ import HomePage from "./pages/Home";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<HomePage />}>
-      <Route path="map" element={<MapPage />} />
-    </Route>
+    <>
+      <Route path="/" element={<HomePage />}/>
+      <Route path="/map" element={<MapPage />} />
+    </>
   )
 );
 

@@ -8,4 +8,5 @@ export const MapWrapper = styled.div`
   background-color: #5dae12;
   background-size: cover;
   height: 100vh;
+  background-position: center;
 `;
