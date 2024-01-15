@@ -1,15 +1,17 @@
-
-import GlobalStyled from "./assets/styles/globalStyled";
+import { ThemeProvider } from "styled-components";
+import GlobalStyled from "./assets/styles/global";
 import { Routes } from "./routes";
-
+import { theme } from "./assets/styles/theme";
 
 function App() {
   return (
     <>
-      <GlobalStyled />
-      <Routes />
+      <ThemeProvider theme={theme}>
+        <GlobalStyled />
+        <Routes />
+      </ThemeProvider>
     </>
   );
 }
 
-export default App
+export default App;
