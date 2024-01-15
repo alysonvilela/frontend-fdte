@@ -1,12 +1,17 @@
 import { createGlobalStyle } from 'styled-components'
+import { rootColors } from './colors'
 
 export default createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
   * {
     box-sizing: border-box;
     margin: 0;
     outline: 0;
     padding: 0;
   }
+
+  ${rootColors};
 
   html {
     font-size: 62.5%;
@@ -22,6 +27,7 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #222;
+    font-family: 'Open Sans';
   }
 
   a,
