@@ -18,7 +18,7 @@ Desenvolver uma aplicação web com o objetivo de avaliarmos o seu domínio em f
 
 #
 ## 📝 **Fluxo e Funcionalidades da aplicação**
-- [ ] Landing page com um botão para iniciar a aplicação (qualquer url inexistente deve redirecionar o usuário para essa landing page).
+- [X] Landing page com um botão para iniciar a aplicação (qualquer url inexistente deve redirecionar o usuário para essa landing page).
 - [ ] Personagem no centro da página.
 - [ ] Barra na esquerda indicando quantos Pokémons ele já capturou (limite de 6) + botão de criação.
 - [ ] Ao passar o mouse no personagem é exibido o tooltip correspondente.
