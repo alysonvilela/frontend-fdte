@@ -35,10 +35,17 @@ type Sources = {
   [k in CharacterStatus]: string;
 };
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.button`
   position: absolute;
   top: 46%;
   left: 50%;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 
   &:hover {
     #tooltip {
@@ -73,4 +80,11 @@ export const CharacterTooltip = styled.img.attrs<CharacterTooltipProps>(
   }
 )`
   position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+export const SpriteWrapper = styled.div`
+  position: absolute;
+  top: -2px;
 `;

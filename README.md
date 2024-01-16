@@ -27,7 +27,7 @@ Desenvolver uma aplicação web com o objetivo de avaliarmos o seu domínio em f
 - [x] Personagem no centro da página.
 - [x] Barra na esquerda indicando quantos Pokémons ele já capturou (limite de 6) + botão de criação.
 - [x] Ao passar o mouse no personagem é exibido o tooltip correspondente.
-- [ ] Ao clicar no personagem é feita uma busca por um Pokémon aleatório (id de 1 a 807).
+- [x] Ao clicar no personagem é feita uma busca por um Pokémon aleatório (id de 1 a 807).
 - [ ] Com o resultado da busca é aberto um modal mostrando os detalhes do Pokémon.
 - [ ] Usuário tem a opção de capturá-lo, clicando na pokébola, ou fechar o modal.
 - [ ] Se ele capturar o Pokémon, esse Pokémon é exibido na SideBar e o modal de captura desaparece.

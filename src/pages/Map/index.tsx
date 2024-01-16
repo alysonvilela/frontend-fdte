@@ -3,65 +3,57 @@ import { Character, CharacterStatus } from "../../components/Character";
 import { Sidebar } from "../../components/Sidebar";
 import * as S from "./styled";
 import { usePokedexStore } from "../../store/pokedex";
-import { useQuery, useQueryClient } from "react-query";
-import {
-  GET_POKEMON_QUERY_KEY,
-  useGetPokemon,
-} from "../../services/use-get-pokemon";
-import { makePokemon } from "../../utils/make-pokemon";
-import { unSlug } from "../../utils/unslug";
+import { useGetPokemon } from "../../services/use-get-pokemon";
 import { pokemonApiAdapter } from "../../services/adapters/pokemon-adapter";
 
 const MapPage = () => {
-  const queryClient = useQueryClient();
   const [status, setStatus] = useState<CharacterStatus>("INITIAL");
   const { slots, add } = usePokedexStore((state) => ({
     slots: state.slots,
     add: state.add,
   }));
 
-  const hasEmptySlot = slots.findIndex((val) => val === null) > -1;
+  const canAdd = slots.some((val) => !val);
 
   const { data, refetch, remove } = useGetPokemon({
     onSuccess: (res) => {
+      setStatus("INITIAL");
       const pokemon = pokemonApiAdapter(res);
       add(pokemon);
     },
   });
 
   const onHover = useCallback(() => {
-    if (hasEmptySlot && status !== "LOADING") {
-      remove();
+    if (status !== "LOADING") {
       setStatus("HOVER");
-      setTimeout(() => {
-        setStatus("LOADING");
-        setTimeout(() => {
-          refetch();
-        }, 1000);
-      }, 500);
-    } else if (!hasEmptySlot) {
-      setStatus("ERROR");
     }
-  }, [hasEmptySlot, refetch, remove, status]);
+  }, [status]);
 
-  const onHoverOut = useCallback(() => {
+  const onClick = () => {
+    if (canAdd && status !== "LOADING") {
+      remove();
+      setTimeout(() => setStatus("LOADING"), 500);
+      setTimeout(() => refetch(), 1000);
+    }
+  };
+
+  const onHoverOut = useCallback(async () => {
     {
-      if (status !== "INITIAL") {
-        setTimeout(() => {
-          queryClient.cancelQueries({ queryKey: [GET_POKEMON_QUERY_KEY] });
-          setStatus("INITIAL");
-        }, 500);
+      if (status === "HOVER" || status === "ERROR") {
+        setTimeout(() => setStatus("INITIAL"), 500);
       }
     }
-  }, [queryClient, status]);
+  }, [status]);
 
+  console.log("status", status);
   return (
     <S.MapWrapper>
       <Sidebar />
       <Character
-        status={status}
-        onMouseEnter={onHover}
-        onMouseLeave={onHoverOut}
+        status={!canAdd ? "ERROR" : status}
+        onMouseEnter={() => onHover()}
+        onClick={() => onClick()}
+        onMouseLeave={() => onHoverOut()}
       />
     </S.MapWrapper>
   );

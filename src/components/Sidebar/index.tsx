@@ -7,13 +7,18 @@ import { usePokedexStore } from "../../store/pokedex";
 
 export const Sidebar = () => {
   const slots = usePokedexStore((state) => state.slots);
+  const remove = usePokedexStore((state) => state.remove);
 
   return (
     <S.SideBarWrapper>
       <S.SideBarList>
         {slots.map((i, idx) => {
           return (
-            <S.SideBarItem key={`sidebar-${idx}`} filled={!!i}>
+            <S.SideBarItem
+              key={`sidebar-${idx}`}
+              filled={!!i}
+              onClick={() => remove(idx)}
+            >
               {i === null ? (
                 <img
                   src={QuestionMark}

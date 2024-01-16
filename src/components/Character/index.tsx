@@ -11,24 +11,26 @@ import { cx } from "../../utils/cx";
 
 export type CharacterStatus = "INITIAL" | "HOVER" | "LOADING" | "ERROR";
 
-interface CharacterProps extends ComponentPropsWithoutRef<"div"> {
+interface CharacterProps extends ComponentPropsWithoutRef<"button"> {
   status: CharacterStatus;
 }
 
 export const Character = ({ status, ...props }: CharacterProps) => {
   return (
-    <S.Wrapper className={cx(status !== "INITIAL" && "hover")} {...props}>
+    <S.Wrapper {...props}>
       <S.ImageWrapper>
         <S.CharacterTooltip status={status} />
         {status === "LOADING" ? (
-          <SpriteAnimator
-            sprite={AshWalking}
-            width={64}
-            height={64}
-            shouldAnimate
-            fps={10}
-            startFrame={0}
-          />
+          <S.SpriteWrapper>
+            <SpriteAnimator
+              sprite={AshWalking}
+              width={64}
+              height={64}
+              shouldAnimate
+              fps={10}
+              startFrame={0}
+            />
+          </S.SpriteWrapper>
         ) : (
           <img
             src={AshFront}
