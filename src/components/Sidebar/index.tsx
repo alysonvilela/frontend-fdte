@@ -13,7 +13,7 @@ export const Sidebar = () => {
       <S.SideBarList>
         {slots.map((i, idx) => {
           return (
-            <S.SideBarItem key={`sioodebar-${idx}`}>
+            <S.SideBarItem key={`sidebar-${idx}`} filled={!!i}>
               {i === null ? (
                 <img
                   src={QuestionMark}
