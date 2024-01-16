@@ -22,12 +22,17 @@ export const Character = ({ status, ...props }: CharacterProps) => {
             sprite={AshWalking}
             width={64}
             height={64}
-            shouldAnimate={true}
+            shouldAnimate
             fps={10}
             startFrame={0}
           />
         ) : (
-          <img src={AshFront} alt="Character Ash on the center of the map" />
+          <img
+            src={AshFront}
+            alt="Character Ash on the center of the map"
+            width={64}
+            height={64}
+          />
         )}
       </S.ImageWrapper>
     </S.Wrapper>

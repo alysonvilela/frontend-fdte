@@ -37,7 +37,7 @@ type Sources = {
 
 export const Wrapper = styled.div`
   position: absolute;
-  top: 50%;
+  top: 46%;
   left: 50%;
 
   &:hover {
@@ -73,7 +73,4 @@ export const CharacterTooltip = styled.img.attrs<CharacterTooltipProps>(
   }
 )`
   position: absolute;
-  /* opacity: 0%; */
-  /* top: -64px; */
-  /* transition: all 0.3s; */
 `;
