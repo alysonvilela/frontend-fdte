@@ -34,6 +34,7 @@ export const Header = styled.div`
 `;
 
 export const Content = styled.div`
+  position: relative;
   background: ${({ theme }) => theme.colors.neutral[100]};
   border-radius: 24px;
   border-bottom-right-radius: 6px;
@@ -42,6 +43,9 @@ export const Content = styled.div`
   height: 100%;
   margin-top: -${247 / 2}px;
   padding-top: ${247 / 2}px;
+  overflow: auto;
+  padding-right: 8px;
+  padding-left: 8px;
 `;
 export const Wrapper = styled.div``;
 
@@ -59,5 +63,109 @@ export const PictureWrapper = styled.div`
   img {
     height: 100%;
     margin: 0 auto;
+  }
+`;
+
+export const Title = styled.h2`
+  margin-top: 36px;
+  margin-bottom: 36px;
+
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.neutral[700]};
+  text-align: center;
+  font-size: 1.8rem;
+  line-height: 2.4rem; /* 133.333% */
+  text-transform: uppercase;
+`;
+
+export const Label = styled.h4`
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.6rem;
+  text-transform: uppercase;
+`;
+
+export const Details = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+`;
+
+export const DetailItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 50px;
+  text-align: center;
+`;
+
+export const DetailItemValue = styled.h2`
+  font-weight: 700;
+  flex: 1;
+  color: ${({ theme }) => theme.colors.neutral[700]};
+  text-align: center;
+  font-size: 1.8rem;
+  line-height: 2.4rem; /* 133.333% */
+  text-transform: uppercase;
+`;
+
+export const DividerVertical = styled.div`
+  border-left: 1px solid ${({ theme }) => theme.colors.neutral[500]};
+  width: 1px;
+  height: 30px;
+`;
+
+export const DividerHorizontal = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral[500]};
+  width: 100%;
+  height: 1px;
+`;
+
+export const Section = styled.div`
+  margin-bottom: 24px;
+`;
+
+export const SubtitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const Subtitle = styled.h3`
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.4rem;
+  color: ${({ theme }) => theme.colors.neutral[700]};
+`;
+
+export const Abilities = styled.div`
+  text-align: center;
+  margin: 36px 0;
+`;
+
+export const SubmitWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  bottom: 32px;
+`;
+
+export const Pokedex = styled.button`
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  img {
+    -webkit-filter: drop-shadow(20px 20px 20px #091e4240);
+    filter: drop-shadow(20px 20px 20px #091e4240);
   }
 `;

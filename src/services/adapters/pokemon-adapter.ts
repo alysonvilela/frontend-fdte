@@ -2,6 +2,8 @@ import { PokeAPI } from "pokeapi-types";
 import { Pokemon } from "../../entities/pokemon";
 import { makePokemon } from "../../utils/make-pokemon";
 import { unSlug } from "../../utils/unslug";
+import { randomUUID } from "node:crypto";
+import { v4 as uuidv4 } from "uuid";
 
 export const pokemonApiAdapter = (data: PokeAPI.Pokemon): Pokemon => {
   const stats = data.stats;
@@ -15,6 +17,8 @@ export const pokemonApiAdapter = (data: PokeAPI.Pokemon): Pokemon => {
   const types = data.types.map((i) => i.type.name);
 
   return makePokemon({
+    poke_id: String(data.id),
+    app_id: uuidv4(),
     name: data.name,
     is_created: false,
     weight: data.weight,

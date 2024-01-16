@@ -1,6 +1,8 @@
 import { Pokemon } from "../entities/pokemon";
 
 interface MakePokemon {
+  poke_id: string;
+  app_id: string;
   is_created: boolean;
   name: string;
   pic: string;
@@ -19,6 +21,8 @@ interface MakePokemon {
 export const makePokemon = (params: MakePokemon): Pokemon => {
   return {
     name: params.name,
+    poke_id: params.poke_id,
+    app_id: params.app_id,
     is_created: params.is_created,
     pic: params.pic,
     height: params.height,
@@ -33,5 +37,6 @@ export const makePokemon = (params: MakePokemon): Pokemon => {
       special_atk: params.special_atk,
       velocity: params.velocity,
     },
+    captured_at: null,
   };
 };

@@ -17,8 +17,8 @@ interface State {
 
 interface Actions {
   add: (pokemon: Pokemon) => void;
-  edit: (pokemonIdx: number, name: string) => void;
-  remove: (pokemonIdx: number) => void;
+  edit: (pokemonAppId: string, name: string) => void;
+  remove: (pokemonAppId: string) => void;
 }
 
 const initialState: State = {
@@ -31,7 +31,10 @@ export const usePokedexStore = create<State & Actions>()((set, get) => ({
   add: (pokemon) => {
     const nextEmptyIdx = get().slots.findIndex((val) => val === null);
     set((old) => {
-      old.slots[nextEmptyIdx] = pokemon;
+      old.slots[nextEmptyIdx] = {
+        ...pokemon,
+        captured_at: new Date().toISOString(),
+      };
 
       return {
         slots: [...old.slots],
@@ -39,7 +42,8 @@ export const usePokedexStore = create<State & Actions>()((set, get) => ({
     });
   },
 
-  edit: (pokemonIdx, name) => {
+  edit: (pokemonAppId, name) => {
+    const pokemonIdx = get().slots.findIndex((i) => i?.app_id === pokemonAppId);
     set((old) => {
       old.slots[pokemonIdx]!.name = name;
 
@@ -49,7 +53,8 @@ export const usePokedexStore = create<State & Actions>()((set, get) => ({
     });
   },
 
-  remove: (pokemonIdx) => {
+  remove: (pokemonAppId) => {
+    const pokemonIdx = get().slots.findIndex((i) => i?.app_id === pokemonAppId);
     set((old) => {
       old.slots[pokemonIdx] = null;
 

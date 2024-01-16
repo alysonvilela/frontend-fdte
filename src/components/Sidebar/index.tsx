@@ -4,8 +4,13 @@ import * as S from "./styled";
 import { Button } from "../Button";
 import QuestionMark from "../../assets/icons/questionmark.svg";
 import { usePokedexStore } from "../../store/pokedex";
+import { Pokemon } from "../../entities/pokemon";
+interface SidebarProps {
+  onSelectPokemon: (pokemon: Pokemon) => void;
+  onCreate: () => void;
+}
 
-export const Sidebar = () => {
+export const Sidebar = ({ onSelectPokemon, onCreate }: SidebarProps) => {
   const slots = usePokedexStore((state) => state.slots);
   const remove = usePokedexStore((state) => state.remove);
 
@@ -17,7 +22,12 @@ export const Sidebar = () => {
             <S.SideBarItem
               key={`sidebar-${idx}`}
               filled={!!i}
-              onClick={() => remove(idx)}
+              onClick={() => {
+                if (i) {
+                  onSelectPokemon(i!);
+                }
+                onCreate();
+              }}
             >
               {i === null ? (
                 <img
@@ -32,7 +42,7 @@ export const Sidebar = () => {
         })}
       </S.SideBarList>
 
-      <Button icon={iconPlus} />
+      <Button icon={iconPlus} onClick={onCreate} />
     </S.SideBarWrapper>
   );
 };

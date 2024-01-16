@@ -10,16 +10,16 @@ import { Pokemon } from "../../entities/pokemon";
 
 const MapPage = () => {
   const [status, setStatus] = useState<CharacterStatus>("INITIAL");
+  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const { slots, add } = usePokedexStore((state) => ({
+  const { slots } = usePokedexStore((state) => ({
     slots: state.slots,
-    add: state.add,
   }));
 
   const canAdd = slots.some((val) => !val);
 
   const { data, refetch, remove } = useGetPokemon({
-    onSuccess: () => {
+    onSuccess: (data) => {
       setStatus("INITIAL");
       if (triggerRef.current) {
         triggerRef.current.click();
@@ -49,10 +49,22 @@ const MapPage = () => {
     }
   }, [status]);
 
-  console.log("status", status);
+  const onSelectPokemon = (pokemon: Pokemon) => {
+    setStatus("INITIAL");
+    if (triggerRef.current) {
+      triggerRef.current.click();
+    }
+    setSelectedPokemon(pokemon);
+  };
+
+  const onCloseModal = () => {
+    remove();
+    setSelectedPokemon(null);
+  };
+
   return (
     <S.MapWrapper>
-      <Sidebar />
+      <Sidebar onSelectPokemon={onSelectPokemon} />
       <Modal.Root>
         <Character
           status={!canAdd ? "ERROR" : status}
@@ -67,7 +79,10 @@ const MapPage = () => {
           }}
         />
         <Modal.Content>
-          <PokemonDetail data={data} />
+          <PokemonDetail
+            data={selectedPokemon ?? data}
+            onClose={onCloseModal}
+          />
         </Modal.Content>
       </Modal.Root>
     </S.MapWrapper>

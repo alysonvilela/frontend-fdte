@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef, forwardRef } from "react";
 import * as S from "./styled";
 import { cx } from "../../utils/cx";
 
@@ -8,11 +8,14 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   hasShadow?: boolean;
 }
 
-export const Button = ({ text, icon, hasShadow, onClick }: ButtonProps) => (
-  <S.ButtonWrapper
-    className={cx(icon && "icon", hasShadow && "shadow", text)}
-    onClick={onClick}
-  >
-    {icon ? <S.Icon src={icon} /> : <S.Text>{text}</S.Text>}
-  </S.ButtonWrapper>
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ text, icon, hasShadow, onClick }: ButtonProps, ref) => (
+    <S.ButtonWrapper
+      className={cx(icon && "icon", hasShadow && "shadow", text)}
+      onClick={onClick}
+      ref={ref}
+    >
+      {icon ? <S.Icon src={icon} /> : <S.Text>{text}</S.Text>}
+    </S.ButtonWrapper>
+  )
 );

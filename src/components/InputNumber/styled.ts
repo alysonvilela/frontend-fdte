@@ -12,7 +12,7 @@ export const Label = styled.label`
   font-size: 1.2rem;
   line-height: 1.6;
   text-transform: uppercase;
-  color: #2e3a59;
+  color: ${({ theme }) => theme.colors.neutral[700]};
 `;
 
 export const InputContent = styled.div`
@@ -60,7 +60,7 @@ export const InputSuffix = styled.span`
   font-weight: 700;
   font-size: 1.6rem;
   line-height: 1.6;
-  color: #2e3a59;
+  color: ${({ theme }) => theme.colors.neutral[700]};
 `;
 export const InputActions = styled.div`
   position: absolute;

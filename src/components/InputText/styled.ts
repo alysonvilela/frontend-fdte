@@ -12,7 +12,7 @@ export const Label = styled.label`
   font-size: 1.2rem;
   line-height: 1.6;
   text-transform: uppercase;
-  color: #2e3a59;
+  color: ${({ theme }) => theme.colors.neutral[700]};
 `;
 
 export const Input = styled.input`

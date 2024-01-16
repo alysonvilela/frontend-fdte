@@ -1,5 +1,7 @@
 export type Pokemon = {
   name: string;
+  poke_id: string;
+  app_id: string;
   is_created: boolean;
   pic: string;
   height: number;
@@ -14,4 +16,5 @@ export type Pokemon = {
     velocity: number;
     hp: number;
   };
+  captured_at: string | null;
 };
