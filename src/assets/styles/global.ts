@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import { rootColors } from './colors'
+import { createGlobalStyle } from "styled-components";
+import { rootColors } from "./colors";
 
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
@@ -72,4 +72,4 @@ export default createGlobalStyle`
   ul {
     list-style: none;
   }
-`
+`;
