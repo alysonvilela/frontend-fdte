@@ -1,4 +1,4 @@
-export interface Pokemon {
+export type Pokemon = {
   name: string;
   is_created: boolean;
   pic: string;
@@ -14,4 +14,4 @@ export interface Pokemon {
     velocity: number;
     hp: number;
   };
-}
+};

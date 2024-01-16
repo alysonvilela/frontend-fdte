@@ -1,38 +1,41 @@
-import styled, { css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-interface PageWrapperProps {
-  isOpen: boolean;
-}
+import * as Dialog from "@radix-ui/react-dialog";
 
-export const ModalWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  background-color: ${({ theme }) => theme.colors.neutral[100]};
-  width: 100%;
-  border-radius: 8px;
-  border-end-end-radius: 0px;
-  border-end-start-radius: 0px;
-
-  @media (min-width: 576px) {
-    max-width: 360px;
-    max-height: 559px;
-    bottom: 50%;
-    border-radius: 8px;
+const overlayShow = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 `;
 
-export const Backdrop = styled.div<PageWrapperProps>`
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+const contentShow = keyframes`
+   from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const ModalPortal = Dialog.Portal;
+
+export const ModalOverlay = styled(Dialog.Overlay)`
   background-color: ${({ theme }) => theme.colors.modal.background};
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
+  animation: ${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1);
+`;
+
+export const ModalContent = styled(Dialog.Content)`
+  position: fixed;
+  inset: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  ${({ isOpen }) => css`
-    display: ${isOpen ? "flex" : "none"};
-  `}
+  width: 100%;
+  height: 100%;
+  animation: ${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1);
 `;

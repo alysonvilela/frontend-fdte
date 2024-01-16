@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const HomeWrapper = styled.main`
-  background: rgb(67, 233, 123);
   background: linear-gradient(
     90deg,
     rgba(67, 233, 123, 1) 0%,

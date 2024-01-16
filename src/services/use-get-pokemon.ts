@@ -2,9 +2,11 @@ import { useQuery } from "react-query";
 import axios, { GenericAbortSignal } from "axios";
 import { getRandomNumber } from "../utils/randomId";
 import { PokeAPI } from "pokeapi-types";
+import { pokemonApiAdapter } from "./adapters/pokemon-adapter";
+import { Pokemon } from "../entities/pokemon";
 
 interface UseGetPokemon {
-  onSuccess: (data: PokeAPI.Pokemon) => void;
+  onSuccess: (data: Pokemon) => void;
 }
 
 export const GET_POKEMON_QUERY_KEY = "get_pokemon";
@@ -17,7 +19,8 @@ const getPokemon = async (signal?: GenericAbortSignal) => {
       signal,
     }
   );
-  return data;
+  const pokemon = pokemonApiAdapter(data);
+  return pokemon;
 };
 
 export const useGetPokemon = ({ onSuccess }: UseGetPokemon) => {
