@@ -20,7 +20,7 @@ export const Sidebar = () => {
                   alt="Question Mark that indicates an empty slot for pokemons"
                 />
               ) : (
-                <p>IMG</p>
+                <img src={i.pic} alt={`Picture of the pokemon ${i.name}`} />
               )}
             </S.SideBarItem>
           );

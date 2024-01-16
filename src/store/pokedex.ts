@@ -1,21 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from "zustand";
+import { Pokemon } from "../entities/pokemon";
 
 // TODO: Type pokemon correctly
 
 interface State {
   slots: [
-    null | any,
-    null | any,
-    null | any,
-    null | any,
-    null | any,
-    null | any
+    null | Pokemon,
+    null | Pokemon,
+    null | Pokemon,
+    null | Pokemon,
+    null | Pokemon,
+    null | Pokemon
   ];
 }
 
 interface Actions {
-  add: (pokemon: any) => void;
+  add: (pokemon: Pokemon) => void;
   edit: (pokemonIdx: number, name: string) => void;
   remove: (pokemonIdx: number) => void;
 }
@@ -40,7 +41,7 @@ export const usePokedexStore = create<State & Actions>()((set, get) => ({
 
   edit: (pokemonIdx, name) => {
     set((old) => {
-      old.slots[pokemonIdx].name = name;
+      old.slots[pokemonIdx]!.name = name;
 
       return {
         slots: [...old.slots],

@@ -1,4 +1,7 @@
 import * as S from "./styles";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { SpriteAnimator } from "react-sprite-animator";
 
 import AshWalking from "../../assets/images/ashWalkingSprite.png";
