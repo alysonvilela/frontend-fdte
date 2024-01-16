@@ -5,6 +5,7 @@ import * as S from "./styled";
 import { usePokedexStore } from "../../store/pokedex";
 import { useGetPokemon } from "../../services/use-get-pokemon";
 import { pokemonApiAdapter } from "../../services/adapters/pokemon-adapter";
+import { useModalStore } from "../../store/modal";
 
 const MapPage = () => {
   const [status, setStatus] = useState<CharacterStatus>("INITIAL");
@@ -12,6 +13,7 @@ const MapPage = () => {
     slots: state.slots,
     add: state.add,
   }));
+  const { toggleModal } = useModalStore();
 
   const canAdd = slots.some((val) => !val);
 
@@ -33,7 +35,8 @@ const MapPage = () => {
     if (canAdd && status !== "LOADING") {
       remove();
       setTimeout(() => setStatus("LOADING"), 500);
-      setTimeout(() => refetch(), 1000);
+      // setTimeout(() => refetch(), 1000);
+      toggleModal();
     }
   };
 
