@@ -1,4 +1,24 @@
 import styled from "styled-components";
+import { Button } from "../Button";
+
+export const CloseButton = styled("button")`
+  background-color: ${({ theme }) => theme.colors.neutral[100]};
+  border: 2px solid ${({ theme }) => theme.colors.neutral[600]};
+  border-radius: 42px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.neutral[400]};
+  }
+`;
 
 export const Background = styled.section`
   position: relative;

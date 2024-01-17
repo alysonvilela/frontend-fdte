@@ -7,7 +7,9 @@ import { Modal } from "../Modal";
 import { useRef } from "react";
 import { PTBR_PokemonTypes } from "../../interfaces/enums/pokemon-types";
 import { PokemonTypesChip } from "../Chip/styles";
-import { PokemonStats } from "../PokemonStats";
+import { PokemonStats } from "../Stats";
+import CloseIcon from "../../assets/images/close.png";
+import { Close } from "@radix-ui/react-dialog";
 
 interface PokemonDetailProps {
   data?: Pokemon;
@@ -35,7 +37,9 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
     <S.Background>
       <S.Header>
         <Modal.Close asChild>
-          <Button title="close" ref={closeRef} onClick={onClose} />
+          <S.CloseButton ref={closeRef} onClick={onClose}>
+            <img src={CloseIcon} alt="Close button" />
+          </S.CloseButton>
         </Modal.Close>
       </S.Header>
       <S.PictureWrapper>
