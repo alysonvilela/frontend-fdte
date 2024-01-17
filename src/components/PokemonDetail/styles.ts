@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Background = styled.section`
   position: relative;
@@ -44,8 +44,8 @@ export const Content = styled.div`
   margin-top: -${247 / 2}px;
   padding-top: ${247 / 2}px;
   overflow: auto;
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-right: 16px;
+  padding-left: 16px;
 `;
 export const Wrapper = styled.div``;
 
@@ -172,4 +172,8 @@ export const Pokedex = styled.button`
     -webkit-filter: drop-shadow(20px 20px 20px #091e4240);
     filter: drop-shadow(20px 20px 20px #091e4240);
   }
+`;
+
+export const WhiteSpace = styled.div`
+  height: 150px;
 `;
