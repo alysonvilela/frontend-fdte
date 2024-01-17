@@ -17,7 +17,7 @@ interface State {
 
 interface Actions {
   add: (pokemon: Pokemon) => void;
-  edit: (pokemonAppId: string, name: string) => void;
+  edit: (pokemonAppId: string, data: Partial<Pokemon>) => void;
   remove: (pokemonAppId: string) => void;
 }
 
@@ -42,10 +42,13 @@ export const usePokedexStore = create<State & Actions>()((set, get) => ({
     });
   },
 
-  edit: (pokemonAppId, name) => {
+  edit: (pokemonAppId, data) => {
     const pokemonIdx = get().slots.findIndex((i) => i?.app_id === pokemonAppId);
     set((old) => {
-      old.slots[pokemonIdx]!.name = name;
+      old.slots[pokemonIdx] = {
+        ...old.slots[pokemonIdx],
+        ...(data as Pokemon),
+      };
 
       return {
         slots: [...old.slots],
