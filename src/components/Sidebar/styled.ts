@@ -40,15 +40,21 @@ export const SideBarItem = styled.li<SideBarItemProps>`
     filled &&
     css`
       background-color: ${theme.colors.neutral[100]};
+      border-color: ${theme.colors.primary.default};
 
       img {
         height: 100%;
+        padding: 6px;
+      }
+
+      &&:hover {
+        background-color: ${({ theme }) => theme.colors.neutral[500]};
       }
     `}
 
   &:hover {
     background-color: #004a45;
-    color: #00d68f;
+    color: ${({ theme }) => theme.colors.primary.default}#00d68f;
   }
 
   &:not(last-of-type) {

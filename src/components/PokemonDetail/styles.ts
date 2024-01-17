@@ -63,6 +63,7 @@ export const PictureWrapper = styled.div`
   img {
     height: 100%;
     margin: 0 auto;
+    padding: 40px;
   }
 `;
 

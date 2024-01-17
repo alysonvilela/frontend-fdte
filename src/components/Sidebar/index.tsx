@@ -12,8 +12,6 @@ interface SidebarProps {
 
 export const Sidebar = ({ onSelectPokemon, onCreate }: SidebarProps) => {
   const slots = usePokedexStore((state) => state.slots);
-  const remove = usePokedexStore((state) => state.remove);
-
   return (
     <S.SideBarWrapper>
       <S.SideBarList>
@@ -29,13 +27,13 @@ export const Sidebar = ({ onSelectPokemon, onCreate }: SidebarProps) => {
                 onCreate();
               }}
             >
-              {i === null ? (
+              {i?.app_id ? (
+                <img src={i.pic} alt={`Picture of the pokemon ${i.name}`} />
+              ) : (
                 <img
                   src={QuestionMark}
                   alt="Question Mark that indicates an empty slot for pokemons"
                 />
-              ) : (
-                <img src={i.pic} alt={`Picture of the pokemon ${i.name}`} />
               )}
             </S.SideBarItem>
           );
