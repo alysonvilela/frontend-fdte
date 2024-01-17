@@ -1,3 +1,5 @@
+import { IPokemonTypes } from "../interfaces/enums/pokemon-types";
+
 export type Pokemon = {
   name: string;
   poke_id: string;
@@ -6,7 +8,7 @@ export type Pokemon = {
   pic: string;
   height: number;
   weight: number;
-  types: string[];
+  types: IPokemonTypes[];
   abilities: string[];
   stats: {
     def: number;

@@ -5,6 +5,11 @@ import * as S from "./styles";
 import { usePokedexStore } from "../../store/pokedex";
 import { Modal } from "../Modal";
 import { useRef } from "react";
+import {
+  IPokemonTypes,
+  PTBR_PokemonTypes,
+} from "../../interfaces/enums/pokemon-types";
+import { PokemonTypesChip } from "../Chip/styles";
 
 interface PokemonDetailProps {
   data?: Pokemon;
@@ -68,6 +73,15 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
             <S.Subtitle>TIPO</S.Subtitle>
             <S.DividerHorizontal></S.DividerHorizontal>
           </S.SubtitleWrapper>
+          <S.Abilities>
+            {data?.types.map((i) => {
+              return (
+                <PokemonTypesChip type={i}>
+                  {PTBR_PokemonTypes[i]}
+                </PokemonTypesChip>
+              );
+            })}
+          </S.Abilities>
         </S.Section>
         <S.Section>
           <S.SubtitleWrapper>

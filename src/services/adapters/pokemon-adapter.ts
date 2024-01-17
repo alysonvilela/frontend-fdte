@@ -2,8 +2,8 @@ import { PokeAPI } from "pokeapi-types";
 import { Pokemon } from "../../entities/pokemon";
 import { makePokemon } from "../../utils/make-pokemon";
 import { unSlug } from "../../utils/unslug";
-import { randomUUID } from "node:crypto";
 import { v4 as uuidv4 } from "uuid";
+import { IPokemonTypes } from "../../interfaces/enums/pokemon-types";
 
 export const pokemonApiAdapter = (data: PokeAPI.Pokemon): Pokemon => {
   const stats = data.stats;
@@ -14,7 +14,9 @@ export const pokemonApiAdapter = (data: PokeAPI.Pokemon): Pokemon => {
   const special_atk = stats.filter((i) => i.stat.name === "special-attack")[0];
   const special_def = stats.filter((i) => i.stat.name === "special-defense")[0];
   const abilities = data.abilities.map((i) => unSlug(i.ability.name));
-  const types = data.types.map((i) => i.type.name);
+  const types = data.types.map(
+    (i) => i.type.name.toUpperCase() as IPokemonTypes
+  );
 
   return makePokemon({
     poke_id: String(data.id),

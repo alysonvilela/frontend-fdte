@@ -145,6 +145,9 @@ export const Subtitle = styled.h3`
 export const Abilities = styled.div`
   text-align: center;
   margin: 36px 0;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 `;
 
 export const SubmitWrapper = styled.div`

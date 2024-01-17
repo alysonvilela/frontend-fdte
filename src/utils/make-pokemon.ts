@@ -1,4 +1,5 @@
 import { Pokemon } from "../entities/pokemon";
+import { IPokemonTypes } from "../interfaces/enums/pokemon-types";
 
 interface MakePokemon {
   poke_id: string;
@@ -9,7 +10,7 @@ interface MakePokemon {
   hp: number;
   height: number;
   weight: number;
-  types: string[];
+  types: IPokemonTypes[];
   abilities: string[];
   def: number;
   atk: number;
