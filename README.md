@@ -33,7 +33,7 @@ Desenvolver uma aplicação web com o objetivo de avaliarmos o seu domínio em f
 - [x] Se ele capturar o Pokémon, esse Pokémon é exibido na SideBar e o modal de captura desaparece.
 - [x] Usuário pode capturar até 6 Pokémons.
 - [x] Selecionando qualquer Pokémon na SideBar o usuário pode ver os detalhes do Pokémon.
-- [ ] O(s) tipo(s) do Pokémon deve ser traduzido (ex: water => Água).
+- [x] O(s) tipo(s) do Pokémon deve ser traduzido (ex: water => Água).
 - [ ] Usuário pode editar SOMENTE o nome de um Pokémon que foi capturado.
 - [ ] Na SideBar o usuário tem a possibilidade de criar um Pokémon (um Pokémon pode ter no máximo 2 "tipos").
 - [ ] O formulário de criação de Pokémon deve conter validações em todos os campos.
