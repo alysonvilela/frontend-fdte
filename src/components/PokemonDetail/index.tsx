@@ -28,6 +28,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
   const {
     register,
     getValues,
+    resetField,
     handleSubmit,
     trigger,
     formState: { errors },
@@ -78,7 +79,8 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
     }
   };
 
-  const handleCancelEdit = () => {
+  const handleCancelEdit = async () => {
+    resetField("name");
     setEdit(false);
   };
 
