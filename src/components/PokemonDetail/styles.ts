@@ -1,5 +1,21 @@
 import styled from "styled-components";
-import { Button } from "../Button";
+import { UnstyledButton } from "../UnstyledButton/styles";
+
+export const EditButton = styled(UnstyledButton)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  &:hover {
+    opacity: 90%;
+  }
+`;
 
 export const CloseButton = styled("button")`
   background-color: ${({ theme }) => theme.colors.neutral[100]};
@@ -20,7 +36,7 @@ export const CloseButton = styled("button")`
   }
 `;
 
-export const Background = styled.section`
+export const Background = styled.form`
   position: relative;
   background: linear-gradient(
     90deg,
@@ -87,10 +103,13 @@ export const PictureWrapper = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const TitleWrapper = styled.div`
+  position: relative;
   margin-top: 36px;
   margin-bottom: 36px;
+`;
 
+export const Title = styled.h2`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.neutral[700]};
   text-align: center;
@@ -177,6 +196,7 @@ export const SubmitWrapper = styled.div`
   justify-content: center;
   left: 0;
   bottom: 32px;
+  gap: 8px;
 `;
 
 export const Pokedex = styled.button`

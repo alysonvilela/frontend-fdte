@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { IPokemonTypes } from "../interfaces/enums/pokemon-types";
 
 export type Pokemon = {

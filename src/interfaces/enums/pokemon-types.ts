@@ -21,6 +21,10 @@ export enum EPOKEMON_TYPES {
 
 export type IPokemonTypes = keyof typeof EPOKEMON_TYPES;
 
+export const PokemonTypesArrayEnum = Object.values(EPOKEMON_TYPES).filter(
+  (i) => typeof i === "string"
+) as [IPokemonTypes, ...IPokemonTypes[]];
+
 export type TranslatePokemonTypes<T> = {
   [k in IPokemonTypes]: T;
 };

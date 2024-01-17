@@ -9,11 +9,12 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ text, icon, hasShadow, onClick }: ButtonProps, ref) => (
+  ({ text, icon, hasShadow, onClick, ...props }: ButtonProps, ref) => (
     <S.ButtonWrapper
       className={cx(icon && "icon", hasShadow && "shadow", text)}
       onClick={onClick}
       ref={ref}
+      {...props}
     >
       {icon ? <S.Icon src={icon} /> : <S.Text>{text}</S.Text>}
     </S.ButtonWrapper>

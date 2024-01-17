@@ -1,7 +1,7 @@
 import { Pokemon } from "../entities/pokemon";
 import { IPokemonTypes } from "../interfaces/enums/pokemon-types";
 
-interface MakePokemon {
+export interface MakePokemon {
   poke_id: string;
   app_id: string;
   is_created: boolean;

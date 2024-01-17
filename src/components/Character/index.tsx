@@ -7,7 +7,6 @@ import { SpriteAnimator } from "react-sprite-animator";
 import AshWalking from "../../assets/images/ashWalkingSprite.png";
 import AshFront from "../../assets/images/ashFront.png";
 import { ComponentPropsWithoutRef } from "react";
-import { cx } from "../../utils/cx";
 
 export type CharacterStatus = "INITIAL" | "HOVER" | "LOADING" | "ERROR";
 
