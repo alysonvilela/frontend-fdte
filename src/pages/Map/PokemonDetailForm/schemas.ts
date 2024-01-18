@@ -29,7 +29,7 @@ export const createOrEditPokemonSchema: z.ZodType<ICreateOrEditPokemon> =
   z.object({
     requiredAbility: z.string().min(10, "Ability must be phrase."),
     requiredType: z.enum(PokemonTypesArrayEnum, {
-      errorMap: (e, i) => {
+      errorMap: () => {
         return { message: "Please select an pokemon type." };
       },
     }),
