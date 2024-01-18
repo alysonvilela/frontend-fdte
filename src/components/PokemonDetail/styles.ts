@@ -95,11 +95,22 @@ export const PictureWrapper = styled.div`
   background: ${({ theme }) => theme.colors.neutral[100]};
   margin-top: 32px;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
     height: 100%;
     margin: 0 auto;
-    padding: 40px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 9999px;
+  }
+
+  .empty {
+    height: 60%;
+    object-fit: contain;
   }
 `;
 

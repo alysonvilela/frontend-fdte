@@ -53,6 +53,14 @@ export const useMapViewModel = () => {
     setSelectedPokemon(pokemon);
   };
 
+  const onCreatePokemon = () => {
+    setStatus("INITIAL");
+    if (triggerRef.current) {
+      triggerRef.current.click();
+    }
+    setSelectedPokemon(null);
+  };
+
   const onCloseModal = () => {
     remove();
     setSelectedPokemon(null);
@@ -64,6 +72,7 @@ export const useMapViewModel = () => {
       onClick,
       onCloseModal,
       onSelectPokemon,
+      onCreatePokemon,
       onHoverOut,
     },
     states: {

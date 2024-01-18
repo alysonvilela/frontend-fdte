@@ -9,46 +9,56 @@ interface PokemonStatsProps {
   stats?: Pokemon["stats"];
 }
 
+interface StatsLabelProps {
+  type: "defense" | "attack" | "speed";
+  text: string;
+  value?: string;
+}
+
+type IconsTypes = {
+  [k in StatsLabelProps["type"]]: string;
+};
+
+export const StatsLabel = ({ type, text, value }: StatsLabelProps) => {
+  const icons: IconsTypes = {
+    defense: DefenseImage,
+    attack: AttackImage,
+    speed: SpeedImage,
+  };
+
+  return (
+    <S.Wrapper>
+      <S.Key>
+        <img src={icons[type]} alt="" />
+        <span>{text}</span>
+      </S.Key>
+      {value && <span>{value}</span>}
+    </S.Wrapper>
+  );
+};
+
 export const PokemonStats = ({ stats }: PokemonStatsProps) => {
   return (
     <>
       {stats && (
         <S.Container>
-          <S.Wrapper>
-            <S.Key>
-              <img src={DefenseImage} alt="" />
-              <span>Defesa</span>
-            </S.Key>
-            <span>{stats.def}</span>
-          </S.Wrapper>
-          <S.Wrapper>
-            <S.Key>
-              <img src={AttackImage} alt="" />
-              <span>ataque</span>
-            </S.Key>
-            <span>{stats.atk}</span>
-          </S.Wrapper>
-          <S.Wrapper>
-            <S.Key>
-              <img src={DefenseImage} alt="" />
-              <span>Defesa especial</span>
-            </S.Key>
-            <span>{stats.special_def}</span>
-          </S.Wrapper>
-          <S.Wrapper>
-            <S.Key>
-              <img src={AttackImage} alt="" />
-              <span>Ataque especial</span>
-            </S.Key>
-            <span>{stats.atk}</span>
-          </S.Wrapper>
-          <S.Wrapper>
-            <S.Key>
-              <img src={SpeedImage} alt="" />
-              <span>Velocidade</span>
-            </S.Key>
-            <span>{stats.velocity}</span>
-          </S.Wrapper>
+          <StatsLabel type="defense" text="Defesa" value={String(stats.def)} />
+          <StatsLabel type="attack" text="Ataque" value={String(stats.def)} />
+          <StatsLabel
+            type="defense"
+            text="Defesa especial"
+            value={String(stats.special_def)}
+          />
+          <StatsLabel
+            type="attack"
+            text="Ataque especial"
+            value={String(stats.special_atk)}
+          />
+          <StatsLabel
+            type="speed"
+            text="Velocidade"
+            value={String(stats.velocity)}
+          />
         </S.Container>
       )}
     </>

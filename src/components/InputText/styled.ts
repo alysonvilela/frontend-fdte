@@ -21,7 +21,7 @@ export const Input = styled.input`
   font-size: 1.6rem;
   padding: 1.2rem 0 1.2rem 0.8rem;
   background: #ffffff;
-  border: 2px solid #e4e9f2;
+  border: 2px solid ${({ theme }) => theme.colors.neutral[400]};
   border-radius: 3px;
   overflow: hidden;
   display: flex;
@@ -33,20 +33,11 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: #c5cef4;
+    color: ${({ theme }) => theme.colors.neutral[600]};
     font-weight: 400;
   }
 
   &.error {
     border-color: red;
   }
-`;
-
-export const ErrorMessage = styled.div`
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.6rem;
-  text-transform: uppercase;
-  color: red;
 `;

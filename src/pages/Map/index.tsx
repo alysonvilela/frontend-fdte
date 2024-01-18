@@ -12,7 +12,8 @@ const MapPage = () => {
     <S.MapWrapper>
       <Sidebar
         onSelectPokemon={handlers.onSelectPokemon}
-        onCreate={() => null}
+        onCreate={handlers.onCreatePokemon}
+        onSearch={handlers.onClick}
       />
       <Modal.Root>
         <Character
@@ -30,7 +31,7 @@ const MapPage = () => {
         <Modal.Content>
           <PokemonDetail
             data={states.selectedPokemon ?? states.data}
-            onClose={handlers.onCloseModal}
+            onClose={() => handlers.onCloseModal()}
           />
         </Modal.Content>
       </Modal.Root>

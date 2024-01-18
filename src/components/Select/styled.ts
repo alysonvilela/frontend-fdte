@@ -19,7 +19,7 @@ export const InputContent = styled.div`
   position: relative;
 `;
 
-export const Input = styled.input`
+export const SelectInput = styled.select`
   width: 100%;
   font-weight: 700;
   font-size: 1.6rem;
@@ -36,23 +36,19 @@ export const Input = styled.input`
     border-color: #598bff;
   }
 
-  &::placeholder {
+  &.placeholder {
     color: ${({ theme }) => theme.colors.neutral[600]};
     font-weight: 400;
   }
 
-  &[type="number"] {
-    -moz-appearance: textfield;
-  }
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
   &.error {
     border-color: red;
+  }
+
+  option {
+    &:disabled {
+      color: red;
+    }
   }
 `;
 

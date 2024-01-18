@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from "zustand";
 import { Pokemon } from "../entities/pokemon";
+import { v4 } from "uuid";
 
 // TODO: Type pokemon correctly
 

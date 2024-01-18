@@ -8,9 +8,14 @@ import { Pokemon } from "../../entities/pokemon";
 interface SidebarProps {
   onSelectPokemon: (pokemon: Pokemon) => void;
   onCreate: () => void;
+  onSearch: () => void;
 }
 
-export const Sidebar = ({ onSelectPokemon, onCreate }: SidebarProps) => {
+export const Sidebar = ({
+  onSelectPokemon,
+  onCreate,
+  onSearch,
+}: SidebarProps) => {
   const slots = usePokedexStore((state) => state.slots);
   return (
     <S.SideBarWrapper>
@@ -19,12 +24,13 @@ export const Sidebar = ({ onSelectPokemon, onCreate }: SidebarProps) => {
           return (
             <S.SideBarItem
               key={`sidebar-${idx}`}
-              filled={!!i}
+              filled={!!i ?? undefined}
               onClick={() => {
                 if (i) {
                   onSelectPokemon(i!);
+                  return;
                 }
-                onCreate();
+                onSearch();
               }}
             >
               {i?.app_id ? (

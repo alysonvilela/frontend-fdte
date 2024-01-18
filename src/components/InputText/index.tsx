@@ -3,6 +3,7 @@ import { ComponentPropsWithoutRef, forwardRef } from "react";
 import * as S from "./styled";
 import { FieldError } from "react-hook-form";
 import { cx } from "../../utils/cx";
+import { InputErrorMessage } from "../InputErrorMessage/styles";
 
 interface InputTextProps extends ComponentPropsWithoutRef<"input"> {
   wrapperClassName?: string;
@@ -38,7 +39,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           {...props}
         />
       </S.InputTextWrapper>
-      {error?.message && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
+      {error?.message && <InputErrorMessage>{error.message}</InputErrorMessage>}
     </>
   )
 );

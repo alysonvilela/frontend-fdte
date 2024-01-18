@@ -28,13 +28,13 @@ export const Select = styled.select`
   font-size: 1.6rem;
   padding: 1.2rem 0 1.2rem 0.8rem;
   background: #ffffff;
-  border: 2px solid #e4e9f2;
+  border: 2px solid ${({ theme }) => theme.colors.neutral[400]};
   border-radius: 3px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   appearance: none;
-  color: #c5cef4;
+  color: ${({ theme }) => theme.colors.neutral[600]};
 
   &:focus,
   &:active {
@@ -46,7 +46,7 @@ export const DropdownOption = styled.option`
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 2.4rem;
-  color: #c5cef4;
+  color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const DropdownIcon = styled.img`

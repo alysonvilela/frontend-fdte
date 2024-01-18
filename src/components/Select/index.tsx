@@ -13,34 +13,39 @@ import {
 import { InputErrorMessage } from "../InputErrorMessage/styles";
 import { cx } from "../../utils/cx";
 
-interface InputNumberProps extends ComponentPropsWithoutRef<"input"> {
+interface SelectProps extends ComponentPropsWithoutRef<"select"> {
   wrapperClassName?: string;
+  placeholder: string;
   label?: React.ReactNode;
-  suffix?: string;
+  options: {
+    value: string;
+    text: string;
+  }[];
   error?: FieldError;
 }
 
-export const InputNumber = forwardRef(
+export const Select = forwardRef(
   (
     {
       className,
       wrapperClassName,
+      placeholder,
+      options,
       label,
       error,
-      suffix,
       ...props
-    }: InputNumberProps,
-    ref: Ref<HTMLInputElement>
+    }: SelectProps,
+    ref: Ref<HTMLSelectElement>
   ) => {
-    const inputRef = useRef<HTMLInputElement>(null);
+    const selectRef = useRef<HTMLSelectElement>(null);
 
     useEffect(() => {
       if (ref) {
         if (typeof ref === "function") {
-          ref(inputRef.current);
+          ref(selectRef.current);
         } else {
-          (ref as MutableRefObject<HTMLInputElement | null>).current =
-            inputRef.current;
+          (ref as MutableRefObject<HTMLSelectElement | null>).current =
+            selectRef.current;
         }
       }
     }, [ref]);
@@ -51,14 +56,18 @@ export const InputNumber = forwardRef(
           {label && <S.Label>{label}</S.Label>}
 
           <S.InputContent>
-            <S.Input
+            <S.SelectInput
               className={cx(className, error?.message && "error")}
-              type="number"
               {...props}
-              ref={inputRef}
-            />
-
-            {suffix && <S.InputSuffix>{suffix}</S.InputSuffix>}
+              ref={selectRef}
+            >
+              <option value="">{placeholder}</option>
+              {options.map((i) => (
+                <option key={i.value} value={i.value}>
+                  {i.text}
+                </option>
+              ))}
+            </S.SelectInput>
 
             <S.InputActions
               className={cx(className, error?.message && "error")}
@@ -68,15 +77,7 @@ export const InputNumber = forwardRef(
                 className="increase"
                 alt="Mais"
                 onClick={() => {
-                  inputRef.current?.stepUp();
-                }}
-              />
-              <S.Arrow
-                src={chevron}
-                className="decrease"
-                alt="Menos"
-                onClick={() => {
-                  inputRef.current?.stepDown();
+                  selectRef.current?.open;
                 }}
               />
             </S.InputActions>
