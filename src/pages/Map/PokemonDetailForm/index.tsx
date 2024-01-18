@@ -212,81 +212,86 @@ export const PokemonDetailForm = ({ data, onClose }: PokemonDetailProps) => {
             />
             <S.Section>
               <FormSubtitle text="Tipo" />
-              <Select
-                placeholder="Selecione o(s) tipo(s)"
-                options={PokemonTypesArrayEnum.map((i) => ({
-                  value: i,
-                  text: PTBR_PokemonTypes[i],
-                }))}
-                error={errors?.requiredType}
-                {...register("requiredType")}
-              />
-              <Select
-                placeholder="Selecione o(s) tipo(s)"
-                options={PokemonTypesArrayEnum.map((i) => ({
-                  value: i,
-                  text: PTBR_PokemonTypes[i],
-                }))}
-                error={errors?.types?.[0]}
-                {...register("types.0")}
-              />
+              <S.InputsWrapper>
+                <Select
+                  placeholder="Selecione o(s) tipo(s)"
+                  options={PokemonTypesArrayEnum.map((i) => ({
+                    value: i,
+                    text: PTBR_PokemonTypes[i],
+                  }))}
+                  error={errors?.requiredType}
+                  {...register("requiredType")}
+                />
+                <Select
+                  placeholder="Selecione o(s) tipo(s)"
+                  options={PokemonTypesArrayEnum.map((i) => ({
+                    value: i,
+                    text: PTBR_PokemonTypes[i],
+                  }))}
+                  error={errors?.types?.[0]}
+                  {...register("types.0")}
+                />
+              </S.InputsWrapper>
             </S.Section>
             <S.Section>
               <FormSubtitle text="HABILIDADES" />
-
-              <InputText
-                placeholder="Habilidade 1"
-                {...register("requiredAbility")}
-                error={errors?.requiredAbility}
-              />
-              <InputText
-                placeholder="Habilidade 2"
-                {...register(`abilities.${0}`)}
-                error={errors?.abilities?.[0]}
-              />
-              <InputText
-                placeholder="Habilidade 3"
-                {...register(`abilities.${1}`)}
-                error={errors?.abilities?.[1]}
-              />
-              <InputText
-                placeholder="Habilidade 4"
-                {...register(`abilities.${2}`)}
-                error={errors?.abilities?.[2]}
-              />
+              <S.InputsWrapper>
+                <InputText
+                  placeholder="Habilidade 1"
+                  {...register("requiredAbility")}
+                  error={errors?.requiredAbility}
+                />
+                <InputText
+                  placeholder="Habilidade 2"
+                  {...register(`abilities.${0}`)}
+                  error={errors?.abilities?.[0]}
+                />
+                <InputText
+                  placeholder="Habilidade 3"
+                  {...register(`abilities.${1}`)}
+                  error={errors?.abilities?.[1]}
+                />
+                <InputText
+                  placeholder="Habilidade 4"
+                  {...register(`abilities.${2}`)}
+                  error={errors?.abilities?.[2]}
+                />
+              </S.InputsWrapper>
             </S.Section>
             <S.Section>
               <FormSubtitle text="ESTATÍSTICAS" />
-              <InputNumber
-                control={control}
-                label={<StatsLabel text="defesa" type="defense" />}
-                {...register("stats.def")}
-                error={errors?.stats?.def}
-              />
-              <InputNumber
-                control={control}
-                label={<StatsLabel text="ataque" type="attack" />}
-                {...register("stats.atk")}
-                error={errors?.stats?.atk}
-              />
-              <InputNumber
-                control={control}
-                label={<StatsLabel text="defesa especial" type="defense" />}
-                {...register("stats.special_def")}
-                error={errors?.stats?.special_def}
-              />
-              <InputNumber
-                control={control}
-                label={<StatsLabel text="ataque especial" type="attack" />}
-                {...register("stats.special_atk")}
-                error={errors?.stats?.special_atk}
-              />
-              <InputNumber
-                control={control}
-                label={<StatsLabel text="velocidade" type="speed" />}
-                {...register("stats.velocity")}
-                error={errors?.stats?.velocity}
-              />
+              <S.InputsWrapper>
+                <InputNumber
+                  control={control}
+                  label={<StatsLabel text="defesa" type="defense" />}
+                  {...register("stats.def")}
+                  error={errors?.stats?.def}
+                />
+                <InputNumber
+                  control={control}
+                  label={<StatsLabel text="ataque" type="attack" />}
+                  {...register("stats.atk")}
+                  error={errors?.stats?.atk}
+                />
+                <InputNumber
+                  control={control}
+                  label={<StatsLabel text="defesa especial" type="defense" />}
+                  {...register("stats.special_def")}
+                  error={errors?.stats?.special_def}
+                />
+                <InputNumber
+                  control={control}
+                  label={<StatsLabel text="ataque especial" type="attack" />}
+                  {...register("stats.special_atk")}
+                  error={errors?.stats?.special_atk}
+                />
+                <InputNumber
+                  control={control}
+                  label={<StatsLabel text="velocidade" type="speed" />}
+                  {...register("stats.velocity")}
+                  error={errors?.stats?.velocity}
+                />
+              </S.InputsWrapper>
               <S.WhiteSpace />
             </S.Section>
           </>
@@ -337,7 +342,9 @@ export const PokemonDetailForm = ({ data, onClose }: PokemonDetailProps) => {
             )}
             <S.Section>
               <FormSubtitle text="ESTATÍSTICAS" />
-              <PokemonStats stats={values.stats} />
+              <S.InputsWrapper>
+                <PokemonStats stats={values.stats} />
+              </S.InputsWrapper>
               <S.WhiteSpace />
             </S.Section>
           </>

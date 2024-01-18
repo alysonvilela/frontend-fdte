@@ -109,8 +109,7 @@ export const PictureWrapper = styled.div`
   }
 
   .empty {
-    height: 60%;
-    object-fit: contain;
+    object-fit: scale-down;
   }
 `;
 
@@ -168,28 +167,8 @@ export const DividerVertical = styled.div`
   height: 30px;
 `;
 
-export const DividerHorizontal = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral[500]};
-  width: 100%;
-  height: 1px;
-`;
-
 export const Section = styled.div`
   margin-bottom: 24px;
-`;
-
-export const SubtitleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-`;
-
-export const Subtitle = styled.h3`
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 2.4rem;
-  color: ${({ theme }) => theme.colors.neutral[700]};
 `;
 
 export const Abilities = styled.div`
@@ -223,6 +202,10 @@ export const Pokedex = styled.button`
     -webkit-filter: drop-shadow(20px 20px 20px #091e4240);
     filter: drop-shadow(20px 20px 20px #091e4240);
   }
+`;
+
+export const InputsWrapper = styled.div`
+  padding: 16px 0;
 `;
 
 export const WhiteSpace = styled.div`
