@@ -77,7 +77,7 @@ export const Select = forwardRef(
                 className="increase"
                 alt="Mais"
                 onClick={() => {
-                  selectRef.current?.open;
+                  // selectRef.current?
                 }}
               />
             </S.InputActions>

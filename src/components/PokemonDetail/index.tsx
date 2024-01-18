@@ -6,7 +6,6 @@ import { usePokedexStore } from "../../store/pokedex";
 import { Modal } from "../Modal";
 import { useRef, useState } from "react";
 import {
-  EPOKEMON_TYPES,
   IPokemonTypes,
   PTBR_PokemonTypes,
   PokemonTypesArrayEnum,
@@ -16,7 +15,7 @@ import { PokemonStats, StatsLabel } from "../Stats";
 import CloseIcon from "../../assets/images/close.png";
 import EditIcon from "../../assets/images/editIcon.png";
 import { InputText } from "../InputText";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ICreateOrEditPokemon,
@@ -108,6 +107,12 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
     const isCreated = !data?.app_id;
 
     const { requiredAbility, requiredType, ...rest } = formData;
+    const abilitiesData = [requiredAbility, ...rest.abilities!].filter(
+      (i) => !!i
+    );
+    const typesData = [requiredType, ...rest.types!].filter(
+      (i) => !!i
+    ) as IPokemonTypes[];
 
     if (isCreated) {
       add({
@@ -116,11 +121,15 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
         app_id: v4(),
         poke_id: v4(),
         is_created: true,
-        abilities: [requiredAbility, ...rest.abilities!].filter((i) => !!i),
-        types: [requiredType, ...rest.types!],
+        abilities: abilitiesData,
+        types: typesData,
       });
     } else {
-      update(String(data?.app_id), formData);
+      update(String(data?.app_id), {
+        ...rest,
+        abilities: abilitiesData,
+        types: typesData,
+      });
       setEdit(false);
       return;
     }
@@ -289,11 +298,12 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
               <Subtitle text="TIPO" />
               <S.Abilities>
                 {[requiredType, ...values.types!].map((i) => {
-                  return (
-                    <PokemonTypesChip type={i}>
-                      {PTBR_PokemonTypes[i]}
-                    </PokemonTypesChip>
-                  );
+                  if (i)
+                    return (
+                      <PokemonTypesChip type={i}>
+                        {PTBR_PokemonTypes[i]}
+                      </PokemonTypesChip>
+                    );
                 })}
               </S.Abilities>
             </S.Section>
