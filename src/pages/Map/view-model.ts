@@ -63,9 +63,6 @@ export const useMapViewModel = () => {
 
   const onCloseModal = () => {
     remove();
-    if (triggerRef.current) {
-      triggerRef.current.click();
-    }
     setSelectedPokemon(null);
   };
 
