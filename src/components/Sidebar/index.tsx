@@ -18,6 +18,7 @@ export const Sidebar = ({
   onSearch,
 }: SidebarProps) => {
   const slots = usePokedexStore((state) => state.slots);
+  const isEmptySlots = slots.filter((i) => !!i).length == 6;
   return (
     <S.SideBarWrapper>
       <S.SideBarList>
@@ -47,7 +48,7 @@ export const Sidebar = ({
         })}
       </S.SideBarList>
 
-      <Button icon={iconPlus} onClick={onCreate} />
+      <Button icon={iconPlus} onClick={onCreate} disabled={isEmptySlots} />
     </S.SideBarWrapper>
   );
 };

@@ -30,6 +30,12 @@ export const ButtonWrapper = styled.button`
   &:hover {
     background-color: #db2c66;
   }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.neutral[600]};
+    border-color: ${({ theme }) => theme.colors.neutral[700]};
+    opacity: 0.7;
+  }
 `;
 
 export const Icon = styled.img``;
