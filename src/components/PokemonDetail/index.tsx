@@ -129,8 +129,6 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
     onClose();
   });
 
-  console.log({ isDirty });
-
   return (
     <S.Background onSubmit={onSubmit}>
       <S.Header>
