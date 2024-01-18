@@ -1,4 +1,4 @@
-import { Pokemon } from "../entities/pokemon";
+import { Pokemon } from "../interfaces/pokemon";
 import { IPokemonTypes } from "../interfaces/enums/pokemon-types";
 
 export interface MakePokemon {

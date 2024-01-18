@@ -3,7 +3,7 @@ import axios, { GenericAbortSignal } from "axios";
 import { getRandomNumber } from "../utils/random-number";
 import { PokeAPI } from "pokeapi-types";
 import { pokemonApiAdapter } from "./adapters/pokemon-adapter";
-import { Pokemon } from "../entities/pokemon";
+import { Pokemon } from "../interfaces/pokemon";
 
 interface UseGetPokemon {
   onSuccess: (data: Pokemon) => void;

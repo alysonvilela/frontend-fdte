@@ -3,7 +3,7 @@ import * as S from "./styles";
 import AttackImage from "../../assets/images/sword.png";
 import DefenseImage from "../../assets/images/shield.png";
 import SpeedImage from "../../assets/images/speed.png";
-import { Pokemon } from "../../entities/pokemon";
+import { Pokemon } from "../../interfaces/pokemon";
 
 interface PokemonStatsProps {
   stats?: Pokemon["stats"];

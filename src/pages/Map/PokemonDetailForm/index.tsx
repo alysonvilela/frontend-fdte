@@ -15,7 +15,7 @@ import {
   editPokemonSchema,
 } from "./schemas";
 import { v4 } from "uuid";
-import { Pokemon } from "../../../entities/pokemon";
+import { Pokemon } from "../../../interfaces/pokemon";
 import { usePokedexStore } from "../../../store/pokedex";
 import { InputText } from "../../../components/InputText";
 import { InputNumber } from "../../../components/InputNumber";

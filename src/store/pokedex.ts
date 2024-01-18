@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Pokemon } from "../entities/pokemon";
+import { Pokemon } from "../interfaces/pokemon";
 
 interface State {
   slots: [

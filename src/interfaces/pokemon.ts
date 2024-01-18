@@ -1,4 +1,4 @@
-import { IPokemonTypes } from "../interfaces/enums/pokemon-types";
+import { IPokemonTypes } from "./enums/pokemon-types";
 
 export type Pokemon = {
   name: string;

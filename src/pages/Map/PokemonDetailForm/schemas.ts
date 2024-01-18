@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Pokemon } from "../../../entities/pokemon";
+import { Pokemon } from "../../../interfaces/pokemon";
 import {
   IPokemonTypes,
   PokemonTypesArrayEnum,

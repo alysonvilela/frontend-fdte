@@ -1,5 +1,5 @@
 import { CharacterStatus } from "../../components/Character";
-import { Pokemon } from "../../entities/pokemon";
+import { Pokemon } from "../../interfaces/pokemon";
 import { useCallback, useRef, useState } from "react";
 import { usePokedexStore } from "../../store/pokedex";
 import { useGetPokemon } from "../../services/use-get-pokemon";

@@ -4,7 +4,7 @@ import * as S from "./styled";
 import { Button } from "../Button";
 import QuestionMark from "../../assets/icons/questionmark.svg";
 import { usePokedexStore } from "../../store/pokedex";
-import { Pokemon } from "../../entities/pokemon";
+import { Pokemon } from "../../interfaces/pokemon";
 import { cx } from "../../utils/cx";
 interface SidebarProps {
   onSelectPokemon: (pokemon: Pokemon) => void;

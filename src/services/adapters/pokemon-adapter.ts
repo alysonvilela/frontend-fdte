@@ -1,5 +1,5 @@
 import { PokeAPI } from "pokeapi-types";
-import { Pokemon } from "../../entities/pokemon";
+import { Pokemon } from "../../interfaces/pokemon";
 import { makePokemon } from "../../utils/make-pokemon";
 import { unSlug } from "../../utils/unslug";
 import { v4 as uuidv4 } from "uuid";

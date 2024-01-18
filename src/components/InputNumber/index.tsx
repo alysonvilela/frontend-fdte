@@ -5,13 +5,13 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 import chevron from "../../assets/images/chevronDownBlack.png";
-
 import * as S from "./styled";
 
 import { InputErrorMessage } from "../InputErrorMessage/styles";
 import { cx } from "../../utils/cx";
 
-interface InputNumberProps<T> extends UseControllerProps<T> {
+interface InputNumberProps<T extends FieldValues>
+  extends UseControllerProps<T> {
   wrapperClassName?: string;
   className?: string;
   label?: React.ReactNode;
