@@ -2,25 +2,6 @@
 
 # **Teste Front-End ReactJS**
 
-## 💻 **O desafio**
-
-Desenvolver uma aplicação web com o objetivo de avaliarmos o seu domínio em front-end, ou seja, sua organização, estilo e boas práticas com o código, conhecimento dos frameworks e tecnologias utilizadas.
-
-#
-
-## 🔗 **Links**
-
-#### **Segue links uteis para resolução do desafio:**
-
-- [PokéApi](https://pokeapi.co/)
-- [Layout Desktop](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=13%3A13571&scaling=min-zoom)
-- [Layout Mobile](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=41%3A18782&scaling=min-zoom)
-- [Style Guide](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=36%3A2135&scaling=min-zoom)
-- [Componentes](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=27%3A18584&scaling=min-zoom)
-- [Issues](https://bitbucket.org/fdtedsd/teste-frontend/issues)
-
-#
-
 ## 📝 **Fluxo e Funcionalidades da aplicação**
 
 - [x] Landing page com um botão para iniciar a aplicação (qualquer url inexistente deve redirecionar o usuário para essa landing page).
@@ -36,70 +17,47 @@ Desenvolver uma aplicação web com o objetivo de avaliarmos o seu domínio em f
 - [x] O(s) tipo(s) do Pokémon deve ser traduzido (ex: water => Água).
 - [x] Usuário pode editar SOMENTE o nome de um Pokémon que foi capturado.
 - [x] Na SideBar o usuário tem a possibilidade de criar um Pokémon (um Pokémon pode ter no máximo 2 "tipos").
-- [ ] O formulário de criação de Pokémon deve conter validações em todos os campos.
-- [ ] Caso algum campo não esteja preenchido, o botão de criação deve ficar bloqueado.
+- [x] O formulário de criação de Pokémon deve conter validações em todos os campos.
+- [x] Caso algum campo não esteja preenchido, o botão de criação deve ficar bloqueado.
 - [x] Para um Pokémon criado o usuário pode editar qualquer informação ou liberá-lo.
 - [x] Sempre que liberar um Pokémon é possível capturar outro através da busca ou criar um customizado.
 - [x] Caso as 6 posições estejam ocupadas o usuário não pode mais buscar nem criar novos Pokémons.
 - [x] Responsividade para resoluções desktop e mobile. (Ex: 1280 x 720, 360 x 740)
 
-#
-
-## 📖 **Regras**
-
-- Todo o seu código deve ser disponibilizado em um repositório público ou privado em seu Github ou Bitbucket pessoal;
-- Envie o link para [FDTE RH](mailto:vanessa.bruno@fdte.io?subject=Teste_Front-End_ReactJS);
-- Escolha uma das duas versões abaixo para realizar o teste:
-  - Versão [com sass](https://bitbucket.org/fdtedsd/teste-frontend/src/master/examples/with-sass/);
-  - Versão [com styled-components](https://bitbucket.org/fdtedsd/teste-frontend/src/master/examples/with-styled-components/);
-- Utilizar a [PokéApi](https://pokeapi.co/) para interagir com a aplicação;
-- Usar componentes funcionais e hooks;
-- Não usar componentes de Class;
-
-#
-
 ## 🚀 **Tecnologias**
 
 #### **Para a resolução do desafio, fique a vontade para utilizar as tecnologias citadas abaixo:**
 
-- react-redux
-- redux
-- redux-thunk
-- redux-sagas
+- vite
+- vitest
+- zustand
+- react-query
 - axios
-- storybook
 - eslint
-- node-sass
 - styled-components
-- prettier
-- prop-types
 - typescript
 - react-hook-form
-- formik
-- yup
-
-#
-
-## ⚠️ **Observações**
-
-- Fique a vontade para mudar a estrutura de como estão os exemplos;
-- Muita atenção ao link das issues por que lá estão descritas as tarefas para serem executadas.
-- Você pode implementar a aplicação usando typescript, assim como o uso de PropTypes.
-- Mesmo a aplicação sendo pequena, o uso do redux está liberado.
-- Os componentes devem ser responsivos.
-
-#
+- react-testing-library
+- zod
 
 ## ➕ **Opcional**
 
-#### **Esperamos que você tenha curiosidade em criar testes para aplicação, mas não se preocupe, isso é opcional**
+#### **Tests**
 
-- Teste unitário
-- Teste de integração
-- Teste de interface
+- Os testes foram feitos em áreas estratégicas para que o foco fosse funcionalidade.
+  - Store (onde todas requisicoes de CREATE / UPDATE / DELETE devem acontecer)
+  - Adapters (onde os dados são simplificados para o uso real)
 
-#
+#### **Decisões Técnicas**
 
-## 📝 **License**
-
-**FDTE Copyright © 2020**
+- Uso do styled-components: Facilita pois não há necessidade de transicionar entre o diretório src/components e assets/styles/sass/components
+- Algumas estruturas de layout foram alteradas para simplificar o desenvolvimento
+  - Botões de salvar e fechar edição
+  - Novo input de URL de imagem, valida se a imagem tem os formator png e jpg
+- O modal não possui a funcionalidade 'click-outside', foi um débito que decidi ter para facilitar o desenvolvimento
+- Uso do react-query: manejar a interação do cliente com as requisições, mas por ser uma unica requisição de busca o axios ou mesmo a fetch-api supriria a necessidade sozinho, acabei adicionando no projeto pela frequência que uso em projetos maiores.
+- Zustand para gerenciamento de estado: simplifica o setup de um reducer e possibilita o uso de funções assíncronas que ocorreriam na evolução do app.
+- Zod para validação de formulários: Há uma grande competição com a lib Yup, mas o Zod trás consigo formas sincronas de validação e uma variadade de utilitárias que melhoram o DX com typescript.
+- Vite: Como por padrão de projetos com javascript, utilizo sempre o typescript para evitar problemas futuros, o Vite ajudou por ter um setup simples e rápido já integrado. Caso uma evolução do app venha a ter autenticação, permissionamento e afins, o Nextjs pode ser mais util por conta de libs que facilitam o setup inicial (NextAuth, Clerk).
+- O arquivo de formulário poderia ser simplificado em outros pequenos componentes.
+- Hook-form: performance e DX, com suas APIs bem documentadas, uso de refs para o gerenciamento de estados e componentes que facilitam a customização de inputs.
