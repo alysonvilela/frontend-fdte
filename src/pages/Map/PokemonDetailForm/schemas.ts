@@ -18,64 +18,63 @@ export type ICreateOrEditPokemon = Omit<
 export type IEditPokemon = {
   name: string;
 };
-
 export const editPokemonSchema: z.ZodType<IEditPokemon> = z.object({
   name: z
     .string()
-    .min(3, { message: "Name must be at least 3 characters long." }),
+    .min(3, { message: "O nome deve ter pelo menos 3 caracteres." }),
 });
 
 export const createOrEditPokemonSchema: z.ZodType<ICreateOrEditPokemon> =
   z.object({
-    requiredAbility: z.string().min(10, "Ability must be phrase."),
+    requiredAbility: z.string().min(10, "A habilidade deve ser uma frase."),
     requiredType: z.enum(PokemonTypesArrayEnum, {
       errorMap: () => {
-        return { message: "Please select an pokemon type." };
+        return { message: "Por favor, selecione um tipo de pokémon." };
       },
     }),
     abilities: z.array(z.string()).min(0),
     types: z.array(z.enum([...PokemonTypesArrayEnum, ""])).optional(),
     height: z.coerce
       .number()
-      .nonnegative("Only positive numbers")
-      .min(1, { message: "Height must be at least 1." }),
+      .nonnegative("Apenas números positivos")
+      .min(1, { message: "A altura deve ser pelo menos 1." }),
     name: z
       .string()
-      .min(3, { message: "Name must be at least 3 characters long." }),
+      .min(3, { message: "O nome deve ter pelo menos 3 caracteres." }),
     pic: z
       .string()
-      .min(1, "Insert a picture URL")
+      .min(1, "Insira um URL de imagem")
       .refine((filename) => /\.(jpg|png)$/i.test(filename), {
-        message: "Invalid image url.",
+        message: "URL de imagem inválido.",
       }),
     weight: z.coerce
       .number()
-      .nonnegative("Only positive numbers")
-      .min(1, { message: "Weight must be at least 1." }),
+      .nonnegative("Apenas números positivos")
+      .min(1, { message: "O peso deve ser pelo menos 1." }),
     stats: z.object({
       atk: z.coerce
         .number()
-        .nonnegative("Only positive numbers")
-        .min(1, { message: "Attack must be at least 1." }),
+        .nonnegative("Apenas números positivos")
+        .min(1, { message: "O ataque deve ser pelo menos 1." }),
       def: z.coerce
         .number()
-        .nonnegative("Only positive numbers")
-        .min(1, { message: "Defense must be at least 1." }),
+        .nonnegative("Apenas números positivos")
+        .min(1, { message: "A defesa deve ser pelo menos 1." }),
       hp: z.coerce
         .number()
-        .nonnegative("Only positive numbers")
-        .min(1, { message: "HP must be at least 1." }),
+        .nonnegative("Apenas números positivos")
+        .min(1, { message: "O HP deve ser pelo menos 1." }),
       special_atk: z.coerce
         .number()
-        .nonnegative("Only positive numbers")
-        .min(1, { message: "Special Attack must be at least 1." }),
+        .nonnegative("Apenas números positivos")
+        .min(1, { message: "O Ataque Especial deve ser pelo menos 1." }),
       special_def: z.coerce
         .number()
-        .nonnegative("Only positive numbers")
-        .min(1, { message: "Special Defense must be at least 1." }),
+        .nonnegative("Apenas números positivos")
+        .min(1, { message: "A Defesa Especial deve ser pelo menos 1." }),
       velocity: z.coerce
         .number()
-        .nonnegative("Only positive numbers")
-        .min(1, { message: "Velocity must be at least 1." }),
+        .nonnegative("Apenas números positivos")
+        .min(1, { message: "A Velocidade deve ser pelo menos 1." }),
     }),
   });
