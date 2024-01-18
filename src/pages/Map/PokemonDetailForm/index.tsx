@@ -50,12 +50,11 @@ export const PokemonDetailForm = ({ data, onClose }: PokemonDetailProps) => {
   const isEditingCaptured = isEditing && !isCreated;
   const canEditCaptured = isCaptured && !isEditing;
 
-  console.log({ data });
-
   const [requiredAbility, ...abilities] = data?.abilities ?? [];
   const [requiredType, ...types] = data?.types ?? [];
 
   const {
+    control,
     register,
     getValues,
     resetField,
@@ -192,17 +191,20 @@ export const PokemonDetailForm = ({ data, onClose }: PokemonDetailProps) => {
               error={errors?.name}
             />
             <InputNumber
+              control={control}
               label={"HP"}
               {...register("stats.hp")}
               error={errors?.stats?.hp}
             />
             <InputNumber
+              control={control}
               label={"Peso"}
               suffix="Kg"
               {...register("weight")}
               error={errors?.weight}
             />
             <InputNumber
+              control={control}
               label={"altura"}
               suffix="m"
               {...register("height")}
@@ -256,26 +258,31 @@ export const PokemonDetailForm = ({ data, onClose }: PokemonDetailProps) => {
             <S.Section>
               <FormSubtitle text="ESTATÍSTICAS" />
               <InputNumber
+                control={control}
                 label={<StatsLabel text="defesa" type="defense" />}
                 {...register("stats.def")}
                 error={errors?.stats?.def}
               />
               <InputNumber
+                control={control}
                 label={<StatsLabel text="ataque" type="attack" />}
                 {...register("stats.atk")}
                 error={errors?.stats?.atk}
               />
               <InputNumber
+                control={control}
                 label={<StatsLabel text="defesa especial" type="defense" />}
                 {...register("stats.special_def")}
                 error={errors?.stats?.special_def}
               />
               <InputNumber
+                control={control}
                 label={<StatsLabel text="ataque especial" type="attack" />}
                 {...register("stats.special_atk")}
                 error={errors?.stats?.special_atk}
               />
               <InputNumber
+                control={control}
                 label={<StatsLabel text="velocidade" type="speed" />}
                 {...register("stats.velocity")}
                 error={errors?.stats?.velocity}

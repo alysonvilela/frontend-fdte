@@ -79,7 +79,6 @@ export const Select = forwardRef(
             >
               <S.Arrow
                 src={chevron}
-                className="increase"
                 alt="Mais"
                 onClick={() => {
                   selectRef.current?.click();

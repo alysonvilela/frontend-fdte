@@ -58,36 +58,24 @@ export const InputSuffix = styled.span`
 `;
 export const InputActions = styled.div`
   position: absolute;
-  right: 0;
+  right: 8px;
   top: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #e4e9f2;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   height: 100%;
+  pointer-events: none;
 
   &.error {
     border: 2px solid red;
     border-left: 0;
   }
-
-  img {
-  }
 `;
 
 export const Arrow = styled.img`
   transition: all 0.2s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.neutral[600]};
-    cursor: pointer;
-  }
-
-  &.increase {
-    transform: rotate(180deg);
-  }
 `;
