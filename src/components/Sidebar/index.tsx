@@ -24,7 +24,7 @@ export const Sidebar = ({
           return (
             <S.SideBarItem
               key={`sidebar-${idx}`}
-              filled={!!i ?? undefined}
+              filled={!!i?.name}
               onClick={() => {
                 if (i) {
                   onSelectPokemon(i!);

@@ -15,11 +15,12 @@ export const useMapViewModel = () => {
   const canAdd = slots.some((val) => !val);
 
   const { data, refetch, remove } = useGetPokemon({
-    onSuccess: () => {
+    onSuccess: (data) => {
       setStatus("INITIAL");
       if (triggerRef.current) {
         triggerRef.current.click();
       }
+      setSelectedPokemon(data);
     },
   });
 
@@ -54,7 +55,6 @@ export const useMapViewModel = () => {
   };
 
   const onCreatePokemon = () => {
-    setStatus("INITIAL");
     if (triggerRef.current) {
       triggerRef.current.click();
     }
@@ -63,6 +63,9 @@ export const useMapViewModel = () => {
 
   const onCloseModal = () => {
     remove();
+    if (triggerRef.current) {
+      triggerRef.current.click();
+    }
     setSelectedPokemon(null);
   };
 

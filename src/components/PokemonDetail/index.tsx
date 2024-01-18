@@ -29,7 +29,7 @@ import { Select } from "../Select";
 import { v4 } from "uuid";
 
 interface PokemonDetailProps {
-  data?: Pokemon;
+  data: Pokemon | null;
   onClose: () => void;
 }
 
@@ -98,9 +98,9 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
   };
 
   const handleClose = () => {
+    setEdit(false);
     onClose();
     reset();
-    handleCancelEdit();
   };
 
   const onSubmit = handleSubmit((formData) => {

@@ -27,6 +27,7 @@ interface SelectProps extends ComponentPropsWithoutRef<"select"> {
 export const Select = forwardRef(
   (
     {
+      name,
       className,
       wrapperClassName,
       placeholder,
@@ -63,7 +64,7 @@ export const Select = forwardRef(
             >
               <option value="">{placeholder}</option>
               {options.map((i) => (
-                <option key={i.value} value={i.value}>
+                <option key={`${name}-i.value`} value={i.value}>
                   {i.text}
                 </option>
               ))}

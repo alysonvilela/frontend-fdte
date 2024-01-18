@@ -30,7 +30,7 @@ const MapPage = () => {
         />
         <Modal.Content>
           <PokemonDetail
-            data={states.selectedPokemon ?? states.data}
+            data={states.selectedPokemon}
             onClose={() => handlers.onCloseModal()}
           />
         </Modal.Content>

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface SideBarItemProps {
-  filled: boolean;
+  filled?: boolean;
 }
 
 export const SideBarWrapper = styled.aside`
