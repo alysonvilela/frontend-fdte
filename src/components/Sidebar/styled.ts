@@ -36,19 +36,22 @@ export const SideBarItem = styled.li<SideBarItemProps>`
   background-repeat: no-repeat;
   background-size: cover;
 
-  ${({ theme, filled }) =>
-    filled &&
+  ${({ theme }) =>
     css`
-      background-color: ${theme.colors.neutral[100]};
-      border-color: ${theme.colors.primary.default};
+      &.filled {
+        background-color: ${theme.colors.neutral[100]};
+        border-color: ${theme.colors.primary.default};
 
-      img {
-        height: 100%;
-        padding: 6px;
-      }
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 999px;
+        }
 
-      &&:hover {
-        background-color: ${({ theme }) => theme.colors.neutral[500]};
+        &&:hover {
+          background-color: ${({ theme }) => theme.colors.neutral[500]};
+        }
       }
     `}
 

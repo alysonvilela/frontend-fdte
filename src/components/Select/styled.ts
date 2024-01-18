@@ -44,12 +44,6 @@ export const SelectInput = styled.select`
   &.error {
     border-color: red;
   }
-
-  option {
-    &:disabled {
-      color: red;
-    }
-  }
 `;
 
 export const InputSuffix = styled.span`

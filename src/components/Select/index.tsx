@@ -2,7 +2,7 @@ import { FieldError } from "react-hook-form";
 import chevron from "../../assets/images/chevronDownBlack.png";
 
 import * as S from "./styled";
-import {
+import React, {
   ComponentPropsWithoutRef,
   MutableRefObject,
   Ref,
@@ -27,7 +27,6 @@ interface SelectProps extends ComponentPropsWithoutRef<"select"> {
 export const Select = forwardRef(
   (
     {
-      name,
       className,
       wrapperClassName,
       placeholder,
@@ -49,7 +48,7 @@ export const Select = forwardRef(
             selectRef.current;
         }
       }
-    }, [ref]);
+    }, [ref, selectRef]);
 
     return (
       <>
@@ -60,13 +59,18 @@ export const Select = forwardRef(
             <S.SelectInput
               className={cx(className, error?.message && "error")}
               {...props}
+              defaultValue={""}
               ref={selectRef}
             >
-              <option value="">{placeholder}</option>
+              <option value="" disabled>
+                {placeholder}
+              </option>
               {options.map((i) => (
-                <option key={`${name}-i.value`} value={i.value}>
-                  {i.text}
-                </option>
+                <React.Fragment key={props.id + i.text}>
+                  <option key={i.value} value={i.value}>
+                    {i.text}
+                  </option>
+                </React.Fragment>
               ))}
             </S.SelectInput>
 
@@ -78,7 +82,7 @@ export const Select = forwardRef(
                 className="increase"
                 alt="Mais"
                 onClick={() => {
-                  // selectRef.current?
+                  selectRef.current?.click();
                 }}
               />
             </S.InputActions>

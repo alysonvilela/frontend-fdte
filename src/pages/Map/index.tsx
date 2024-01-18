@@ -1,9 +1,9 @@
 import { Character } from "../../components/Character";
 import { Sidebar } from "../../components/Sidebar";
-import * as S from "./styled";
 import { Modal } from "../../components/Modal";
-import { PokemonDetail } from "../../components/PokemonDetail";
+import { PokemonDetailForm } from "./PokemonDetailForm";
 import { useMapViewModel } from "./view-model";
+import * as S from "./styled";
 
 const MapPage = () => {
   const { handlers, states } = useMapViewModel();
@@ -29,7 +29,7 @@ const MapPage = () => {
           }}
         />
         <Modal.Content>
-          <PokemonDetail
+          <PokemonDetailForm
             data={states.selectedPokemon}
             onClose={() => handlers.onCloseModal()}
           />

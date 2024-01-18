@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { Pokemon } from "../../entities/pokemon";
+import { Pokemon } from "../../../entities/pokemon";
 import {
   IPokemonTypes,
   PokemonTypesArrayEnum,
-} from "../../interfaces/enums/pokemon-types";
+} from "../../../interfaces/enums/pokemon-types";
 
 export type ICreateOrEditPokemon = Omit<
   Pokemon,
@@ -29,7 +29,8 @@ export const createOrEditPokemonSchema: z.ZodType<ICreateOrEditPokemon> =
   z.object({
     requiredAbility: z.string().min(10, "Ability must be phrase."),
     requiredType: z.enum(PokemonTypesArrayEnum, {
-      errorMap: () => {
+      errorMap: (e, i) => {
+        console.log({ e, i });
         return { message: "Please select an pokemon type." };
       },
     }),

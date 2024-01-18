@@ -5,6 +5,7 @@ import { Button } from "../Button";
 import QuestionMark from "../../assets/icons/questionmark.svg";
 import { usePokedexStore } from "../../store/pokedex";
 import { Pokemon } from "../../entities/pokemon";
+import { cx } from "../../utils/cx";
 interface SidebarProps {
   onSelectPokemon: (pokemon: Pokemon) => void;
   onCreate: () => void;
@@ -23,8 +24,8 @@ export const Sidebar = ({
         {slots.map((i, idx) => {
           return (
             <S.SideBarItem
+              className={cx(!!i?.name && "filled")}
               key={`sidebar-${idx}`}
-              filled={!!i?.name}
               onClick={() => {
                 if (i) {
                   onSelectPokemon(i!);

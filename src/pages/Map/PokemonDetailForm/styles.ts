@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { UnstyledButton } from "../UnstyledButton/styles";
+import { UnstyledButton } from "../../../components/UnstyledButton/styles";
 
 export const EditButton = styled(UnstyledButton)`
   position: absolute;

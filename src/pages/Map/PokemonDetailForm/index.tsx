@@ -1,40 +1,42 @@
-import { Pokemon } from "../../entities/pokemon";
-import { Button } from "../Button";
-import Pokeball from "../../assets/images/pokeball.png";
 import * as S from "./styles";
-import { usePokedexStore } from "../../store/pokedex";
-import { Modal } from "../Modal";
+import { Modal } from "../../../components/Modal";
 import { useRef, useState } from "react";
 import {
   IPokemonTypes,
   PTBR_PokemonTypes,
   PokemonTypesArrayEnum,
-} from "../../interfaces/enums/pokemon-types";
-import { PokemonTypesChip } from "../Chip/styles";
-import { PokemonStats, StatsLabel } from "../Stats";
-import CloseIcon from "../../assets/images/close.png";
-import EditIcon from "../../assets/images/editIcon.png";
-import { InputText } from "../InputText";
+} from "../../../interfaces/enums/pokemon-types";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ICreateOrEditPokemon,
   createOrEditPokemonSchema,
   editPokemonSchema,
-} from "./resolvers";
-import { Subtitle } from "./subtitle";
-import { InputNumber } from "../InputNumber";
-import CameraIcon from "../../assets/images/camera.png";
-import { Select } from "../Select";
+} from "./schemas";
 import { v4 } from "uuid";
+import { Pokemon } from "../../../entities/pokemon";
+import { usePokedexStore } from "../../../store/pokedex";
+import { InputText } from "../../../components/InputText";
+import { InputNumber } from "../../../components/InputNumber";
+import { FormSubtitle } from "../../../components/FormSubtitle";
+import { Select } from "../../../components/Select";
+import { PokemonStats, StatsLabel } from "../../../components/Stats";
+import { PokemonTypesChip } from "../../../components/Chip/styles";
+import { Button } from "../../../components/Button";
+
+import CloseIcon from "../../../assets/images/close.png";
+import EditIcon from "../../../assets/images/editIcon.png";
+import CameraIcon from "../../../assets/images/camera.png";
+import Pokeball from "../../../assets/images/pokeball.png";
 
 interface PokemonDetailProps {
   data: Pokemon | null;
   onClose: () => void;
 }
 
-export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
-  const [edit, setEdit] = useState(false);
+export const PokemonDetailForm = ({ data, onClose }: PokemonDetailProps) => {
+  const [isEditing, setEditing] = useState(false);
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const add = usePokedexStore((state) => state.add);
   const remove = usePokedexStore((state) => state.remove);
@@ -42,7 +44,14 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
 
   const isCaptured = !!data?.captured_at;
   const isCreated = !!data?.is_created;
-  const isCreatingOrEditting = (edit && isCreated) || !data?.name;
+  const isEmpty = !data?.name;
+
+  const isCreatingOrEdittingSelf = (isCreated && isEditing) || isEmpty;
+  const isEditingCaptured = isEditing && !isCreated;
+  const canEditCaptured = isCaptured && !isEditing;
+
+  console.log({ data });
+
   const [requiredAbility, ...abilities] = data?.abilities ?? [];
   const [requiredType, ...types] = data?.types ?? [];
 
@@ -74,7 +83,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
       },
     },
     resolver: zodResolver(
-      isCreatingOrEditting ? createOrEditPokemonSchema : editPokemonSchema
+      isCreatingOrEdittingSelf ? createOrEditPokemonSchema : editPokemonSchema
     ),
   });
 
@@ -94,11 +103,11 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
 
   const handleCancelEdit = async () => {
     resetField("name");
-    setEdit(false);
+    setEditing(false);
   };
 
   const handleClose = () => {
-    setEdit(false);
+    setEditing(false);
     onClose();
     reset();
   };
@@ -107,10 +116,10 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
     const isCreated = !data?.app_id;
 
     const { requiredAbility, requiredType, ...rest } = formData;
-    const abilitiesData = [requiredAbility, ...rest.abilities!].filter(
+    const abilitiesData = [requiredAbility, ...(rest.abilities! ?? [])].filter(
       (i) => !!i
     );
-    const typesData = [requiredType, ...rest.types!].filter(
+    const typesData = [requiredType, ...(rest.types! ?? [])].filter(
       (i) => !!i
     ) as IPokemonTypes[];
 
@@ -130,7 +139,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
         abilities: abilitiesData,
         types: typesData,
       });
-      setEdit(false);
+      setEditing(false);
       return;
     }
 
@@ -159,18 +168,18 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
       </S.PictureWrapper>
       <S.Content>
         <S.TitleWrapper>
-          {!edit && !isCreatingOrEditting && <S.Title>{values.name}</S.Title>}
-          {isCaptured && !edit && (
-            <S.EditButton onClick={() => setEdit(true)} type="button">
+          {!isEditing && <S.Title>{values.name}</S.Title>}
+          {canEditCaptured && (
+            <S.EditButton onClick={() => setEditing(true)} type="button">
               <img src={EditIcon} alt="Edit button" />
             </S.EditButton>
           )}
 
-          {isCaptured && !isCreated && edit && (
+          {isEditingCaptured && (
             <InputText label="nome" {...register("name")} error={errors.name} />
           )}
         </S.TitleWrapper>
-        {isCreatingOrEditting ? (
+        {isCreatingOrEdittingSelf ? (
           <>
             <InputText
               label="URL da imagem"
@@ -200,9 +209,9 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
               error={errors?.height}
             />
             <S.Section>
-              <Subtitle text="Tipo" />
+              <FormSubtitle text="Tipo" />
               <Select
-                placeholder="Selecione os tipos"
+                placeholder="Selecione o(s) tipo(s)"
                 options={PokemonTypesArrayEnum.map((i) => ({
                   value: i,
                   text: PTBR_PokemonTypes[i],
@@ -211,7 +220,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
                 {...register("requiredType")}
               />
               <Select
-                placeholder="Selecione os tipos"
+                placeholder="Selecione o(s) tipo(s)"
                 options={PokemonTypesArrayEnum.map((i) => ({
                   value: i,
                   text: PTBR_PokemonTypes[i],
@@ -221,7 +230,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
               />
             </S.Section>
             <S.Section>
-              <Subtitle text="HABILIDADES" />
+              <FormSubtitle text="HABILIDADES" />
 
               <InputText
                 placeholder="Habilidade 1"
@@ -245,7 +254,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
               />
             </S.Section>
             <S.Section>
-              <Subtitle text="ESTATÍSTICAS" />
+              <FormSubtitle text="ESTATÍSTICAS" />
               <InputNumber
                 label={<StatsLabel text="defesa" type="defense" />}
                 {...register("stats.def")}
@@ -295,12 +304,12 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
               </S.DetailItem>
             </S.Details>
             <S.Section>
-              <Subtitle text="TIPO" />
+              <FormSubtitle text="TIPO" />
               <S.Abilities>
                 {[requiredType, ...values.types!].map((i) => {
                   if (i)
                     return (
-                      <PokemonTypesChip type={i}>
+                      <PokemonTypesChip key={i} type={i}>
                         {PTBR_PokemonTypes[i]}
                       </PokemonTypesChip>
                     );
@@ -309,7 +318,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
             </S.Section>
             {[requiredAbility, ...values.abilities!].length > 0 && (
               <S.Section>
-                <Subtitle text="HABILIDADES" />
+                <FormSubtitle text="HABILIDADES" />
                 <S.Abilities>
                   <S.Label>
                     {[requiredAbility, ...values.abilities!].reduce(
@@ -320,7 +329,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
               </S.Section>
             )}
             <S.Section>
-              <Subtitle text="ESTATÍSTICAS" />
+              <FormSubtitle text="ESTATÍSTICAS" />
               <PokemonStats stats={values.stats} />
               <S.WhiteSpace />
             </S.Section>
@@ -328,7 +337,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
         )}
       </S.Content>
       <S.SubmitWrapper>
-        {!edit && isCreatingOrEditting && (
+        {isCreatingOrEdittingSelf && !isCreated && (
           <Button
             type="submit"
             text="CRIAR POKEMON"
@@ -336,7 +345,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
             disabled={isDirty && !errors}
           />
         )}
-        {edit && (
+        {isEditing && (
           <>
             <Button type="submit" text={"SALVAR"} hasShadow />
             <Button
@@ -347,7 +356,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
             />
           </>
         )}
-        {isCaptured && !edit && (
+        {!isEditing && isCaptured && (
           <Button
             type="button"
             text={"LIBERAR POKEMON"}
@@ -355,7 +364,7 @@ export const PokemonDetail = ({ data, onClose }: PokemonDetailProps) => {
             hasShadow
           />
         )}
-        {!isCaptured && !isCreatingOrEditting && (
+        {!isCaptured && !isCreatingOrEdittingSelf && (
           <S.Pokedex onClick={handleAddPokemon} type="button">
             <img src={Pokeball} alt="Press here to capture this pokemon" />
           </S.Pokedex>
