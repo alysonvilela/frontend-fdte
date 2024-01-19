@@ -2,7 +2,7 @@ import { Pokemon } from "../interfaces/pokemon";
 import { usePokedexStore } from "./pokedex";
 import { act, renderHook } from "../__tests__/utils";
 
-const POKEMON: Omit<Pokemon, "app_id" | "captured_at"> = {
+export const POKEMON: Omit<Pokemon, "app_id" | "captured_at"> = {
   name: "mudsdale",
   poke_id: "750",
   is_created: false,
