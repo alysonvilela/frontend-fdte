@@ -16,6 +16,7 @@ interface Actions {
   add: (pokemon: Pokemon) => void;
   edit: (pokemonAppId: string, data: Partial<Pokemon>) => void;
   remove: (pokemonAppId: string) => void;
+  reset: () => void; // only-for-testing
 }
 
 const initialState: State = {
@@ -26,22 +27,26 @@ export const usePokedexStore = create<State & Actions>()((set, get) => ({
   ...initialState,
 
   add: (pokemon) => {
-    const nextEmptyIdx = get().slots.findIndex((val) => val === null);
-    set((old) => {
-      old.slots[nextEmptyIdx] = {
-        ...pokemon,
-        captured_at: new Date().toISOString(),
-      };
+    const canAdd = get().slots.filter((i) => !!i).length < 6;
+    if (canAdd) {
+      set((old) => {
+        const nextEmptyIdx = old.slots.findIndex((val) => val === null);
+        old.slots[nextEmptyIdx] = {
+          ...pokemon,
+          captured_at: new Date().toISOString(),
+        };
 
-      return {
-        slots: [...old.slots],
-      };
-    });
+        return {
+          slots: [...old.slots],
+        };
+      });
+    }
   },
 
   edit: (pokemonAppId, data) => {
-    const pokemonIdx = get().slots.findIndex((i) => i?.app_id === pokemonAppId);
     set((old) => {
+      const pokemonIdx = old.slots.findIndex((i) => i?.app_id === pokemonAppId);
+
       old.slots[pokemonIdx] = {
         ...old.slots[pokemonIdx],
         ...(data as Pokemon),
@@ -54,13 +59,19 @@ export const usePokedexStore = create<State & Actions>()((set, get) => ({
   },
 
   remove: (pokemonAppId) => {
-    const pokemonIdx = get().slots.findIndex((i) => i?.app_id === pokemonAppId);
     set((old) => {
+      const pokemonIdx = old.slots.findIndex((i) => i?.app_id === pokemonAppId);
       old.slots[pokemonIdx] = null;
 
       return {
         slots: [...old.slots],
       };
+    });
+  },
+
+  reset: () => {
+    set({
+      slots: [...initialState.slots],
     });
   },
 }));

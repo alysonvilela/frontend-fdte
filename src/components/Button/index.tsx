@@ -16,7 +16,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       {...props}
     >
-      {icon ? <S.Icon src={icon} /> : <S.Text>{text}</S.Text>}
+      {icon ? (
+        <S.Icon data-testid="icon" src={icon} />
+      ) : (
+        <S.Text data-testid="text">{text}</S.Text>
+      )}
     </S.ButtonWrapper>
   )
 );
+
+// SHOULD INSERT ICON
+// SHOULD INSERT TEXT
